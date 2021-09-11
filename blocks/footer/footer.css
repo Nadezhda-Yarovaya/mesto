@@ -1,0 +1,6 @@
+.footer {
+    max-width: 880px;
+    min-height: 18px;
+    outline: 1px solid salmon;
+    padding: 0 0 60px 0;
+}
