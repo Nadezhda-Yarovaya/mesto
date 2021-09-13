@@ -1,3 +1,4 @@
 .pop-up {
     position: relative;
+    z-index: 10;
 }

@@ -1,0 +1,12 @@
+.elements__titlecontainer {
+    color: black;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    padding: 25px 0 32px 21px;
+    /*border-radius: 0 0 5% 5%;*/
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -9,17 +9,23 @@
   </head>
   <body>
     <div class="content">
-      <header class="header content__header"></header>
+      <header class="header content__header">
+        <a href="#" class="header__title">Mesto <span class="header__subtitle">Russia</span></a>        
+      </header>
       <main class="main">
         <section class="profile main__profile-section">
           <div class="profile__all-info">
             <img class="profile__avatar" src="images/avatar.png" alt="Аватар" />
             <div class="profile__infotext">
-              <h2 class="profile__title">Жак-Ив Кусто</h2>
-              <p class="profile__subtitle"></p>>Исследователь океана</p>
+              <div class="profile__titleedit">
+                <h2 class="profile__title">Жак-Ив Кусто</h2>
+              <button class="profile__edit"><img src="images/edit.svg" alt="изменить имя"></button></div>
+              <p class="profile__subtitle">Исследователь океана</p>
             </div>
           </div>
-          <a href="javascript:showPopUp()" class="profile__button">+</a>
+          <button class="profile__button">+</button>
+          <!-- 
+          <a href="javascript:showPopUp()" class="profile__button">+</a> -->
         </section>
         <section class="elements main__elements-section">
           <ul class="elements__list">
@@ -32,7 +38,7 @@
               />
               <div class="elements__titlecontainer">
                 <h2 class="elements__title">Карачаевск</h2>
-                <div class="elements__like"></div>
+                <button class="elements__like"><img src="images/like.svg" alt="Понравилось"> </button>
               </div>
             </li>
             <li class="elements__element">
@@ -43,7 +49,7 @@
               />
               <div class="elements__titlecontainer">
                 <h2 class="elements__title">Гора Эльбрус</h2>
-                <div class="elements__like"></div>
+                <button class="elements__like"><img src="images/like.svg" alt="Понравилось"> </button>
               </div>
             </li>
             <li class="elements__element">
@@ -54,7 +60,7 @@
               />
               <div class="elements__titlecontainer">
                 <h2 class="elements__title">Домбай</h2>
-                <div class="elements__like"></div>
+                <button class="elements__like"><img src="images/like.svg" alt="Понравилось"> </button>
               </div>
             </li>
             <li class="elements__element">
@@ -65,7 +71,7 @@
               />
               <div class="elements__titlecontainer">
                 <h2 class="elements__title">Камчатка</h2>
-                <div class="elements__like"></div>
+                <button class="elements__like"><img src="images/like.svg" alt="Понравилось"> </button>
               </div>
             </li>
             <li class="elements__element">
@@ -76,7 +82,7 @@
               />
               <div class="elements__titlecontainer">
                 <h2 class="elements__title">Байкал</h2>
-                <div class="elements__like"></div>
+                <button class="elements__like"><img src="images/like.svg" alt="Понравилось"> </button>
               </div>
             </li>
             <li class="elements__element">
@@ -87,23 +93,26 @@
               />
               <div class="elements__titlecontainer">
                 <h2 class="elements__title">Уральские горы</h2>
-                <div class="elements__like"></div>
+                <button class="elements__like"><img src="images/like.svg" alt="Понравилось"> </button>
               </div>
             </li>
           </ul>
         </section>
         <section class="pop-up">
             <div class="content__pop-up pop-up__show">
-                <form onsubmit="" class="pop-up__form">
+                <form class="pop-up__form">
                     <p>Редактировать профиль</p>
-                    <input type="textarea" class="pop-up__textarea" value="Жак-Ив Кусто" id="pop-up-author">
-                    <input type="textarea" class="pop-up__textarea" value="Исследователь океана" id="pop-up-who">
+                    <input type="text" class="pop-up__textarea" value="Жак-Ив Кусто" id="pop-up-author">
+                    <input type="text" class="pop-up__textarea" value="Исследователь океана" id="pop-up-who">
                     <input type="submit" class="pop-up__submit" value="Сохранить">
                 </form>
+                
+            <button class="pop-up__close">x</button>               
             </div>
         </section>
       </main>
-      <footer class="footer content__footer"></footer>
+      <footer class="footer content__footer"><p class="footer__text">2021. Mesto Russia</p></footer>
+      <div class="content__overlay"></div>
     </div>
     <script src="scripts/script.js"></script>
   </body>

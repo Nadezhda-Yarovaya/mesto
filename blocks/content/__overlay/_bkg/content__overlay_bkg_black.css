@@ -1,0 +1,9 @@
+.content__overlay_bkg_black {
+    position: absolute;
+    background-color: rgba(0,0,0,.6);
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 1360px;
+    z-index: 1;
+}

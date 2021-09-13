@@ -7,3 +7,15 @@
     bottom: 500px;
     left: 560px;
 }
+
+.pop-up__close {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 30px;
+    background-color: transparent;
+    color: green;
+    font-size:30px;
+    border: 0;
+    cursor: pointer;
+}
