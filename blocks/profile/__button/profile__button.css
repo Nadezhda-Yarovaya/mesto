@@ -1,12 +1,12 @@
 .profile__button {
   display: block;
-  width: 150px;
-  min-height: 50px;
+  padding: 0;
+  margin: 0;
   text-align: center;
   border: 1px solid white;
   color: white;
   text-decoration: none;
-  font-size: 40px;
+  font-size: 0;
   background-color: transparent;
   cursor: pointer;
 }
@@ -15,20 +15,10 @@
   cursor: pointer;
   opacity: 0.6;
 }
-@media screen and (max-width: 1080px) {
-  .profile__button {
-    width: 120px;
-  }
-}
 
-@media screen and (max-width: 810px) {
+@media screen and (max-width: 680px) {
   .profile__button {
-    width: 110px;
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .profile__button {
+    margin: 36px 0 0 0;
     width: 100%;
   }
 }

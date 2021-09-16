@@ -25,11 +25,11 @@
           <div class="profile__container">
             <img class="profile__avatar" src="images/avatar.png" alt="Аватар" />
             <div class="profile__personal-data">
-              <div class="profile__titleedit">
-                <h1 class="profile__title">Жак-Ив Кусто</h1>
+              <div class="profile__nameedit">
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <button class="profile__edit"></button>
               </div>
-              <p class="profile__subtitle">Исследователь океана</p>
+              <p class="profile__job">Исследователь океана</p>
             </div>
           </div>
           <button class="profile__button">
@@ -147,9 +147,7 @@
         <p class="footer__text">&copy; 2021 Mesto Russia</p>
       </footer>
     </div>
-    <!-- <div class="content__overlay"></div> -->
-    <section class="popup content__popup">
-      <!-- <div class="content__pop-up pop-up__show"> -->
+    <section class="popup content__pop-up">
       <div class="popup__container">
         <form class="popup__form">
           <p class="popup__paragraph">Редактировать профиль</p>
@@ -157,17 +155,17 @@
             type="text"
             class="popup__textarea popup__name"
             value="Жак-Ив Кусто"
-            id="pop-up-author"
           />
           <input
             type="text"
             class="popup__textarea popup__job"
             value="Исследователь океана"
-            id="pop-up-who"
           />
           <input type="submit" class="popup__submit" value="Сохранить" />
         </form>
-        <img class="popup_close" src="images/close-icon.svg" alt="" />
+        <button class="popup__closebtn">
+          <img class="popup__closebtnimg" src="images/close-icon.svg" alt="" />
+        </button>
       </div>
     </section>
     <script src="scripts/index.js"></script>

@@ -22,7 +22,7 @@
 
 @media screen and (max-width: 680px) {
   .elements__list {
-    grid-template-columns: repeat(2, minmax(150px, 270px));
+    grid-template-columns: repeat(2, minmax(190px, 300px));
   }
 }
 

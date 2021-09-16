@@ -1,0 +1,39 @@
+.profile__nameedit {
+  display: flex;
+  align-items: baseline;
+  padding: 0;
+  margin: 0 0 16px 0;
+  width: 100%;
+  max-width: 500px;
+}
+
+@media screen and (max-width: 1280px) {
+  .profile__nameedit {
+    max-width: 390px;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .profile__nameedit {
+    max-width: 280px;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .profile__nameedit {
+    max-width: 270px;
+  }
+}
+@media screen and (max-width: 680px) {
+  .profile__nameedit {
+    width: 100%;
+    max-width: 260px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .profile__nameedit {
+    margin: 0 0 14px;
+    min-width: 243px;
+  }
+}

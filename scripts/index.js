@@ -1,7 +1,7 @@
 /*объявляю переменные  */
 const popup = document.querySelector(".popup");
 const openChngBtn =  document.querySelector(".profile__edit"); 
-const closePopupBtn = document.querySelector(".popup_close"); 
+const closePopupBtn = document.querySelector(".popup__closebtn"); 
 const formElement = document.querySelector(".popup__form");
 const like = document.querySelectorAll(".elements__like");
 
@@ -18,12 +18,12 @@ function clickOutsd(event) {
 
 function formSubmitHandler(event) {
   event.preventDefault();
-  let nameInput = document.querySelector(".profile__title"); 
-  let jobInput = document.querySelector(".profile__subtitle");
-  let result1 = popup.querySelector("#pop-up-author");
-  let result2 = popup.querySelector("#pop-up-who");
-  nameInput.textContent = result1.value;
-  jobInput.textContent = result2.value;
+  let nameInput = document.querySelector(".profile__name"); 
+  let jobInput = document.querySelector(".profile__job");
+  let nameResult = popup.querySelector(".popup__name");
+  let jobResult = popup.querySelector(".popup__job");
+  nameInput.textContent = nameResult.value;
+  jobInput.textContent = jobResult.value;
   formToggle();
 }
 
