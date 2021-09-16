@@ -1,7 +1,7 @@
 /*объявляю переменные  */
 const popup = document.querySelector(".popup");
 const openChngBtn =  document.querySelector(".profile__edit"); 
-const closePopupBtn = document.querySelector(".popup__close"); 
+const closePopupBtn = document.querySelector(".popup_close"); 
 const formElement = document.querySelector(".popup__form");
 const like = document.querySelectorAll(".elements__like");
 

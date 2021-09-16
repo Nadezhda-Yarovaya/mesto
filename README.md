@@ -8,4 +8,4 @@
 Использование JS, создание поп-апа, вёрстка форм
 
 **Ссылка на GH-pages**
-[ссылка на макет в GH-Pages](https://tinypng.com/)
+[ссылка на макет в GH-Pages](https://nadezhda-yarovaya.github.io/mesto/)

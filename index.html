@@ -10,30 +10,24 @@
   <body>
     <div class="content">
       <header class="header content__header">
-        <div class="header__container"><a href="#" class="header__logolink">
-          <!--  <h1>Mesto</h1><span class="header__subtitle">Russia</span> -->
-          <img
-            src="images/mainlogo.svg"
-            alt="Логотип Место Россия"
-            class="header__logo"
-          />
-        </a>
+        <div class="header__container">
+          <a href="#" class="header__logolink">
+            <img
+              src="images/mainlogo.svg"
+              alt="Логотип Место Россия"
+              class="header__logo"
+            />
+          </a>
         </div>
       </header>
       <main class="main content__main">
         <section class="profile main__profile-section">
-          <div class="profile__container"> <!-- maybe this delete, position for main profile thing -->
-            <!-- 1 in section-->
+          <div class="profile__container">
             <img class="profile__avatar" src="images/avatar.png" alt="Аватар" />
-            <!-- 1 in 1 sect, div -->
-
             <div class="profile__personal-data">
-              <!-- 2 in 1 sect, div -->
               <div class="profile__titleedit">
                 <h1 class="profile__title">Жак-Ив Кусто</h1>
-                <button class="profile__edit">
-                
-                </button>
+                <button class="profile__edit"></button>
               </div>
               <p class="profile__subtitle">Исследователь океана</p>
             </div>
@@ -41,14 +35,10 @@
           <button class="profile__button">
             <img src="images/plus.svg" alt="добавить" class="profile__addbtn" />
           </button>
-          <!-- 2 in section-->
-          <!-- 
-          <a href="javascript:showPopUp()" class="profile__button">+</a> -->
         </section>
         <section class="elements main__elements-section">
           <ul class="elements__list">
             <li class="elements__element">
-              <!-- yet not links-->
               <img
                 src="./images/karachaevsk.png"
                 alt="Карачаевск"
@@ -177,7 +167,7 @@
           />
           <input type="submit" class="popup__submit" value="Сохранить" />
         </form>
-        <img class="popup__close" src="images/close-icon.svg" alt="" />
+        <img class="popup_close" src="images/close-icon.svg" alt="" />
       </div>
     </section>
     <script src="scripts/index.js"></script>
