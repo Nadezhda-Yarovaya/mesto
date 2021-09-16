@@ -1,0 +1,28 @@
+.popup__submit {
+  outline: 0;
+  border: 0;
+  width: 100%;
+  max-width: 358px;
+  height: 58px;
+  color: white;
+  background-color: black;
+  font-family: "Inter";
+  border-radius: 2px;
+}
+
+.popup__submit:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 680px) {
+  .popup__submit {
+    max-width: 320px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .popup__submit {
+    max-width: 238px;
+  }
+}

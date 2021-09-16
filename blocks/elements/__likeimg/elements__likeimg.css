@@ -1,0 +1,15 @@
+.elements__likeimg {
+  width: 22px;
+  height: 19px;
+  margin: 0;
+  padding: 0;
+}
+
+.elements__likeimg:hover {
+  content: url(../../../images/hover-like.svg);
+  cursor: pointer;
+}
+
+.elements__likeimg_active {
+  content: url(../../../images/active-like.svg);
+}

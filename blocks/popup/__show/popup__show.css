@@ -1,0 +1,7 @@
+.pop-up__show {
+  display: none;
+}
+
+.popup_opened {
+  display: flex;
+}

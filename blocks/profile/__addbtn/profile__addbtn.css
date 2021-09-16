@@ -1,0 +1,11 @@
+.profile__addbtn {
+  width: 22px;
+  height: 22px;
+}
+
+@media screen and (max-width: 450px) {
+  .profile__addbtn {
+    width: 16px;
+    height: 16px;
+  }
+}

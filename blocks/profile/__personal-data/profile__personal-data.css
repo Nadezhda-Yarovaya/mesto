@@ -1,0 +1,21 @@
+.profile__personal-data {
+  color: white;
+  margin: 0 0 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+@media screen and (max-width: 680px) {
+  .profile__personal-data {
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .profile__personal-data {
+    margin: 27px 0 36px;
+  }
+}
