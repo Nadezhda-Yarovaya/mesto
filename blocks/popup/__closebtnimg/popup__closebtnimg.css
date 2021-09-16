@@ -4,18 +4,15 @@
 }
 
 @media screen and (max-width: 680px) {
-    .popup__closebtnimg {
-    
-        width: 25px;
-        height: 25px;
-    }
+  .popup__closebtnimg {
+    width: 25px;
+    height: 25px;
   }
+}
 
-  
 @media screen and (max-width: 450px) {
-    .popup__closebtnimg {
-    
-        width: 20px;
-        height: 20px;
-    }
+  .popup__closebtnimg {
+    width: 20px;
+    height: 20px;
   }
+}
