@@ -1,14 +1,14 @@
 .popup__closebtn {
   position: absolute;
-  top: -32px;
-  right: -32px;
+  top: -43px;
+  right: -45px;
   cursor: pointer;
   border: 0;
   background-color: transparent;
 }
 
 .popup__closebtn:hover {
-  opacity: 0.6;
+  opacity: .6;
 }
 
 @media screen and (max-width: 680px) {
@@ -21,6 +21,6 @@
 @media screen and (max-width: 450px) {
   .popup__closebtn {
     top: -36px;
-    right: 0;
+    right: -5px;
   }
 }

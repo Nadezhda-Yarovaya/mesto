@@ -1,10 +1,11 @@
 .profile__nameedit {
-  display: flex;
-  align-items: baseline;
+ /* display: flex;
+  align-items: baseline;*/
   padding: 0;
-  margin: 0 0 16px 0;
+  margin: 0 0 10px 0;
   width: 100%;
   max-width: 500px;
+  position: relative;
 }
 
 @media screen and (max-width: 1280px) {
@@ -21,19 +22,26 @@
 
 @media screen and (max-width: 810px) {
   .profile__nameedit {
-    max-width: 270px;
+    max-width: 220px;
   }
 }
+
 @media screen and (max-width: 680px) {
   .profile__nameedit {
-    width: 100%;
     max-width: 260px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .profile__nameedit {
+    max-width: 205px;
   }
 }
 
 @media screen and (max-width: 450px) {
   .profile__nameedit {
-    margin: 0 0 14px;
-    min-width: 243px;
-  }
+    max-width: 215px;
+    margin: 0 0 10px;
+    min-width: 10px;
+    text-align: center; }
 }

@@ -8,8 +8,8 @@
     <link href="pages/index.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="content">
-      <header class="header content__header">
+    <div class="page">
+      <header class="header page__header">
         <div class="header__container">
           <a href="#" class="header__logolink">
             <img
@@ -20,7 +20,7 @@
           </a>
         </div>
       </header>
-      <main class="main content__main">
+      <main class="main page__main">
         <section class="profile main__profile-section">
           <div class="profile__container">
             <img class="profile__avatar" src="images/avatar.png" alt="Аватар" />
@@ -33,7 +33,6 @@
             </div>
           </div>
           <button class="profile__button">
-            <img src="images/plus.svg" alt="добавить" class="profile__addbtn" />
           </button>
         </section>
         <section class="elements main__elements-section">
@@ -143,7 +142,7 @@
           </ul>
         </section>
       </main>
-      <footer class="footer content__footer">
+      <footer class="footer page__footer">
         <p class="footer__text">&copy; 2021 Mesto Russia</p>
       </footer>
     </div>
@@ -154,12 +153,12 @@
           <input
             type="text"
             class="popup__textarea popup__name"
-            value="Жак-Ив Кусто"
+            value="Жак-Ив Кусто" required
           />
           <input
             type="text"
             class="popup__textarea popup__job"
-            value="Исследователь океана"
+            value="Исследователь океана"  required
           />
           <input type="submit" class="popup__submit" value="Сохранить" />
         </form>

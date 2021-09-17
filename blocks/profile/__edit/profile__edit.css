@@ -1,4 +1,7 @@
 .profile__edit {
+  position: absolute;
+  bottom: 8px;
+  right: -42px;
   border: 1px solid white;
   background-color: transparent;
   background-image: url(../../../images/edit.svg);
@@ -6,7 +9,7 @@
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
-  margin: 0 0 0 18px;
+  /*margin: 0 0 0 18px;*/
   text-align: center;
   box-sizing: border-box;
   width: 24px;
@@ -18,10 +21,31 @@
   opacity: 0.6;
 }
 
+@media screen and (max-width: 1080px) {
+  .profile__edit {
+    bottom: 12px;
+    right: -42px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .profile__edit {
+    bottom: 4px;
+    right: -42px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .profile__edit {
     margin: 0 0 0 10px;
     width: 18px;
     height: 18px;
+    background-size: 7.5px 7.5px;
+    bottom: 4px;
+    right: -15px;
   }
 }
