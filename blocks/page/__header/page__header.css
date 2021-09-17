@@ -1,12 +1,11 @@
 .page__header {
   margin: 0;
   padding: 0;
-  width: 100%;  
+  width: 100%;
   max-width: 880px;
   min-height: 74px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   border-bottom: 0;
-  
 }
 
 @media screen and (max-width: 1080px) {
@@ -23,14 +22,13 @@
 
 @media screen and (max-width: 680px) {
   .page__header {
-   padding: 0 40px;
+    padding: 0 40px;
   }
 }
 
 @media screen and (max-width: 450px) {
   .page__header {
     padding: 0 27px;
-    border-bottom: 1px solid rgba(84, 84, 84, 0.7);   
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
   }
 }
-

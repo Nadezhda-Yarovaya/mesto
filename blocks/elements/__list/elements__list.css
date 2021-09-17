@@ -8,6 +8,7 @@
   grid-column-gap: 17px;
   grid-row-gap: 20px;
 }
+
 @media screen and (max-width: 1280px) {
   .elements__list {
     grid-template-columns: repeat(3, minmax(200px, 282px));
