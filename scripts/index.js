@@ -22,8 +22,8 @@ function formSubmitHandler(event) {
   event.preventDefault();
   let nameInput = document.querySelector(".profile__name"); 
   let jobInput = document.querySelector(".profile__job");
-  let nameResult = popup.querySelector(".popup_type_name");
-  let jobResult = popup.querySelector(".popup_type_job");
+  let nameResult = popup.querySelector(".popup__name");
+  let jobResult = popup.querySelector(".popup__job");
   nameInput.textContent = nameResult.value;
   jobInput.textContent = jobResult.value;
   formToggle();
