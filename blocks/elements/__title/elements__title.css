@@ -4,26 +4,8 @@
   line-height: 29px;
   font-size: 24px;
   font-weight: 900;
-  max-width: 195px;
+  max-width: 85%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-}
-
-@media screen and (max-width: 810px) {
-  .elements__title {
-    max-width: 230px;
-  }
-}
-
-@media screen and (max-width: 680px) {
-  .elements__title {
-    max-width: 180px;
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .elements__title {
-    max-width: 270px;
-  }
 }

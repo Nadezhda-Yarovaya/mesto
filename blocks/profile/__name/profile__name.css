@@ -7,18 +7,33 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 100%;
+  max-width: 440px;
 }
 
 @media screen and (max-width: 1080px) {
   .profile__name {
     font-size: 30px;
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 930px) {
+  .profile__name {
+    max-width: 360px;
   }
 }
 
 @media screen and (max-width: 810px) {
   .profile__name {
     font-size: 28px;
+    max-width: 300px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile__name {
+    font-size: 28px;
+    max-width: 280px;
   }
 }
 

@@ -10,30 +10,25 @@
   <body>
     <div class="page">
       <header class="header page__header">
-        <div class="header__container">
-          <a href="#" class="header__logolink">
-            <img
-              src="images/mainlogo.svg"
-              alt="Логотип Место Россия"
-              class="header__logo"
-            />
-          </a>
-        </div>
+        <a href="#" class="header__logo-link">
+          <img
+            src="images/mainlogo.svg"
+            alt="Логотип Место Россия"
+            class="header__logo"
+          />
+        </a>
       </header>
       <main class="main page__main">
         <section class="profile main__profile-section">
-          <div class="profile__container">
-            <img class="profile__avatar" src="images/avatar.png" alt="Аватар" />
-            <div class="profile__personal-data">
-              <div class="profile__nameedit">
-                <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button class="profile__edit"></button>
-              </div>
-              <p class="profile__job">Исследователь океана</p>
+          <img class="profile__avatar" src="images/avatar.png" alt="Аватар" />
+          <div class="profile__personal-data">
+            <div class="profile__name-containter">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button class="profile__edit-btn"></button>
             </div>
+            <p class="profile__job">Исследователь океана</p>
           </div>
-          <button class="profile__button">
-          </button>
+          <button class="profile__add-btn"></button>
         </section>
         <section class="elements main__elements-section">
           <ul class="elements__list">
@@ -45,13 +40,7 @@
               />
               <div class="elements__titlecontainer">
                 <h2 class="elements__title">Карачаево-Черкесия</h2>
-                <button class="elements__like">
-                  <img
-                    src="images/like.svg"
-                    alt="Понравилось"
-                    class="elements__likeimg"
-                  />
-                </button>
+                <button class="elements__like"></button>
               </div>
             </li>
             <li class="elements__element">
@@ -62,13 +51,7 @@
               />
               <div class="elements__titlecontainer">
                 <h2 class="elements__title">Гора Эльбрус</h2>
-                <button class="elements__like">
-                  <img
-                    src="images/like.svg"
-                    alt="Понравилось"
-                    class="elements__likeimg"
-                  />
-                </button>
+                <button class="elements__like"></button>
               </div>
             </li>
             <li class="elements__element">
@@ -79,13 +62,7 @@
               />
               <div class="elements__titlecontainer">
                 <h2 class="elements__title">Домбай</h2>
-                <button class="elements__like">
-                  <img
-                    src="images/like.svg"
-                    alt="Понравилось"
-                    class="elements__likeimg"
-                  />
-                </button>
+                <button class="elements__like"></button>
               </div>
             </li>
             <li class="elements__element">
@@ -96,13 +73,7 @@
               />
               <div class="elements__titlecontainer">
                 <h2 class="elements__title">Камчатка</h2>
-                <button class="elements__like">
-                  <img
-                    src="images/like.svg"
-                    alt="Понравилось"
-                    class="elements__likeimg"
-                  />
-                </button>
+                <button class="elements__like"></button>
               </div>
             </li>
             <li class="elements__element">
@@ -113,13 +84,7 @@
               />
               <div class="elements__titlecontainer">
                 <h2 class="elements__title">Байкал</h2>
-                <button class="elements__like">
-                  <img
-                    src="images/like.svg"
-                    alt="Понравилось"
-                    class="elements__likeimg"
-                  />
-                </button>
+                <button class="elements__like"></button>
               </div>
             </li>
             <li class="elements__element">
@@ -130,13 +95,7 @@
               />
               <div class="elements__titlecontainer">
                 <h2 class="elements__title">Уральские горы</h2>
-                <button class="elements__like">
-                  <img
-                    src="images/like.svg"
-                    alt="Понравилось"
-                    class="elements__likeimg"
-                  />
-                </button>
+                <button class="elements__like"></button>
               </div>
             </li>
           </ul>
@@ -148,23 +107,23 @@
     </div>
     <section class="popup">
       <div class="popup__container">
-        <form class="popup__form">
+        <form class="popup__form" name="popup-form">
           <p class="popup__paragraph">Редактировать профиль</p>
           <input
             type="text"
-            class="popup__textarea popup__name"
-            value="Жак-Ив Кусто" required
+            class="popup__textarea popup_type_name"
+            value="Жак-Ив Кусто"
+            required
           />
           <input
             type="text"
-            class="popup__textarea popup__job"
-            value="Исследователь океана"  required
+            class="popup__textarea popup_type_job"
+            value="Исследователь океана"
+            required
           />
           <input type="submit" class="popup__submit" value="Сохранить" />
         </form>
-        <button class="popup__closebtn">
-          <img class="popup__closebtnimg" src="images/close-icon.svg" alt="закрыть всплывающее окно" />
-        </button>
+        <button class="popup__close-btn"></button>
       </div>
     </section>
     <script src="scripts/index.js"></script>

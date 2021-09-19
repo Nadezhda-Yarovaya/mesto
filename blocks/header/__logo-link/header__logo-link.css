@@ -1,4 +1,4 @@
-.header__logolink {
+.header__logo-link {
   text-decoration: none;
   margin: 0;
   padding: 0;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 450px) {
-  .header__logolink {
+  .header__logo-link {
     min-height: 24.4px;
   }
 }
