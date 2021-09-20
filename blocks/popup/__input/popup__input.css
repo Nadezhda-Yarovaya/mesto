@@ -15,16 +15,17 @@
 
 .popup__input:nth-last-of-type(2) {
   margin: 0 0 48px 0;
-} 
+}
 
 @media screen and (max-width: 450px) {
   .popup__input {
     padding: 0 0 10.8px 0;
   }
-.popup__input:nth-last-of-type(2) {
-  margin: 0 0 45px 0;
+  
+  .popup__input:nth-last-of-type(2) {
+    margin: 0 0 45px 0;
+  }
 }
-} 
 
 .popup__input:focus {
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);

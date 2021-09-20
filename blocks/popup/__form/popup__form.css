@@ -1,8 +1,7 @@
 .popup__form {
-  
   display: flex;
   flex-direction: column;
-/*  display: grid;
+  /*  display: grid;
   grid-template-rows: auto auto auto auto; 
   grid-row-gap: 10px;*/
   width: 100%;
@@ -11,7 +10,6 @@
   padding: 34px 0 37px;
   margin: 0;
   box-sizing: border-box;
-
 }
 
 @media screen and (max-width: 680px) {
@@ -24,7 +22,6 @@
 @media screen and (max-width: 450px) {
   .popup__form {
     max-width: 238px;
-    
-  min-height: 322px;
+    min-height: 322px;
   }
 }

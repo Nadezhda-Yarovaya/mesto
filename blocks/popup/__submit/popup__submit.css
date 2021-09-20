@@ -10,7 +10,7 @@
   line-height: 21.78px;
   font-size: 18px;
   border-radius: 2px;
-  transition: background-color .4s ease;
+  transition: background-color 0.4s ease;
   margin: 0;
   padding: 0;
 }

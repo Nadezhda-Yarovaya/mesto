@@ -39,12 +39,15 @@
   .profile__name {
     font-size: 31px;
     line-height: 33px;
+    max-width: 270px;
   }
 }
+
 @media screen and (max-width: 560px) {
   .profile__name {
     font-size: 27px;
     line-height: 32.68px;
+    max-width: 250px;
   }
 }
 
@@ -52,5 +55,6 @@
   .profile__name {
     font-size: 27px;
     line-height: 32.68px;
+    max-width: 220px;
   }
 }
