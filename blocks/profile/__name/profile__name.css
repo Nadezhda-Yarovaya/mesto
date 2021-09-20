@@ -12,7 +12,6 @@
 
 @media screen and (max-width: 1080px) {
   .profile__name {
-    font-size: 30px;
     max-width: 400px;
   }
 }
@@ -25,7 +24,7 @@
 
 @media screen and (max-width: 810px) {
   .profile__name {
-    font-size: 28px;
+    font-size: 36px;
     max-width: 300px;
   }
 }
@@ -40,6 +39,12 @@
   .profile__name {
     font-size: 31px;
     line-height: 33px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .profile__name {
+    font-size: 27px;
+    line-height: 32.68px;
   }
 }
 

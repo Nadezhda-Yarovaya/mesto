@@ -8,14 +8,14 @@
 }
 
 @media screen and (max-width: 680px) {
-  .profile {
+  .profile {/*
     grid-template-columns: max-content 2fr;
     grid-template-rows: auto auto;
-    grid-row-gap: 19px;
+    grid-row-gap: 19px;*/
   }
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 680px) {
   .profile {
     grid-template-columns: 100%;
     grid-template-rows: auto auto auto;

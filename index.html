@@ -24,11 +24,11 @@
           <div class="profile__personal-data">
             <div class="profile__name-containter">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button class="profile__edit-btn"></button>
+              <button type="button" class="profile__edit-btn" aria-label="edit-profile"></button>
             </div>
             <p class="profile__job">Исследователь океана</p>
           </div>
-          <button class="profile__add-btn"></button>
+          <button type="button" class="profile__add-btn" aria-label="add-profile"></button>
         </section>
         <section class="elements main__elements-section">
           <ul class="elements__list">
@@ -38,9 +38,9 @@
                 alt="Карачаевск"
                 class="elements__image"
               />
-              <div class="elements__titlecontainer">
+              <div class="elements__title-container">
                 <h2 class="elements__title">Карачаево-Черкесия</h2>
-                <button class="elements__like"></button>
+                <button type="button" class="elements__like" aria-label="like-karachaevsk"></button>
               </div>
             </li>
             <li class="elements__element">
@@ -49,9 +49,9 @@
                 alt="Гора Эльбрус"
                 class="elements__image"
               />
-              <div class="elements__titlecontainer">
+              <div class="elements__title-container">
                 <h2 class="elements__title">Гора Эльбрус</h2>
-                <button class="elements__like"></button>
+                <button class="elements__like" aria-label="like-Elbrus"></button>
               </div>
             </li>
             <li class="elements__element">
@@ -60,9 +60,9 @@
                 alt="Домбай"
                 class="elements__image"
               />
-              <div class="elements__titlecontainer">
+              <div class="elements__title-container">
                 <h2 class="elements__title">Домбай</h2>
-                <button class="elements__like"></button>
+                <button type="button" class="elements__like" aria-label="like-Dombai"></button>
               </div>
             </li>
             <li class="elements__element">
@@ -71,9 +71,9 @@
                 alt="Камчатка"
                 class="elements__image"
               />
-              <div class="elements__titlecontainer">
+              <div class="elements__title-container">
                 <h2 class="elements__title">Камчатка</h2>
-                <button class="elements__like"></button>
+                <button type="button" class="elements__like" aria-label="like-kamchatka"></button>
               </div>
             </li>
             <li class="elements__element">
@@ -82,9 +82,9 @@
                 alt="Байкал"
                 class="elements__image"
               />
-              <div class="elements__titlecontainer">
+              <div class="elements__title-container">
                 <h2 class="elements__title">Байкал</h2>
-                <button class="elements__like"></button>
+                <button type="button" class="elements__like" aria-label="like-baikal"></button>
               </div>
             </li>
             <li class="elements__element">
@@ -93,9 +93,9 @@
                 alt="Уральские горы"
                 class="elements__image"
               />
-              <div class="elements__titlecontainer">
+              <div class="elements__title-container">
                 <h2 class="elements__title">Уральские горы</h2>
-                <button class="elements__like"></button>
+                <button type="button" class="elements__like" aria-label="like-ural"></button>
               </div>
             </li>
           </ul>
@@ -105,27 +105,27 @@
         <p class="footer__text">&copy; 2021 Mesto Russia</p>
       </footer>
     </div>
-    <section class="popup">
+    <div class="popup">
       <div class="popup__container">
         <form class="popup__form" name="popup-form">
           <p class="popup__paragraph">Редактировать профиль</p>
           <input
             type="text"
-            class="popup__textarea popup__name"
-            value="Жак-Ив Кусто"
+            class="popup__input popup__input_type_name"
+            placeholder="ФИО"
             required
           />
           <input
             type="text"
-            class="popup__textarea popup__job"
-            value="Исследователь океана"
+            class="popup__input popup__input_type_job"
+            placeholder="должность"
             required
           />
           <input type="submit" class="popup__submit" value="Сохранить" />
         </form>
-        <button class="popup__close-btn"></button>
+        <button type="button" class="popup__close-btn"></button>
       </div>
-    </section>
+    </div>
     <script src="scripts/index.js"></script>
   </body>
 </html>
