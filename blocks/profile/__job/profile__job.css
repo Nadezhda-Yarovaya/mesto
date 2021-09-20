@@ -26,12 +26,12 @@
 @media screen and (max-width: 768px) {
   .profile__job {
     max-width: 270px;
+    font-size: 14px;
   }
 }
 
 @media screen and (max-width: 680px) {
   .profile__job {
-    font-size: 14px;
     line-height: 17px;
     max-width: 210px;
   }
