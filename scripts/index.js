@@ -8,26 +8,21 @@ const jobInput = document.querySelector('.profile__job');
 const nameResult = popup.querySelector('.popup__input_type_name');
 const jobResult = popup.querySelector('.popup__input_type_job');
 
-/*прописываю функции*/
-function formToggle() {
-  popup.classList.toggle('popup_opened');
-}
-
 function popupOpen() {
   nameResult.value = nameInput.textContent;
   jobResult.value = jobInput.textContent;
-  formToggle();
+  popup.classList.add('popup_opened');
 }
 
 function formSubmitHandler(event) {  
   event.preventDefault();
   nameInput.textContent = nameResult.value;
   jobInput.textContent = jobResult.value;
-  formToggle();
+  popupClose();
 }
 
 function popupClose() {
-  formToggle();
+  popup.classList.remove('popup_opened');
 }
 
 /*вешаю все функции на события теперь */
