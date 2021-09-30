@@ -1,3 +1,7 @@
 .popup_opened {
   display: flex;
 }
+
+.lightbox_opened {
+  display: flex;
+}

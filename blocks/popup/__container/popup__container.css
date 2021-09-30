@@ -12,6 +12,20 @@
   align-items: center;
 }
 
+.popup__new-place-cont {
+  width: 100%;
+  max-width: 430px;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  color: black;
+  border-radius: 15px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (max-width: 680px) {
   .popup__container {
     max-width: 380px;
@@ -22,4 +36,24 @@
   .popup__container {
     max-width: 282px;
   }
+}
+.cont_image {
+  background-image: url(../../../images/kirill-pershin-1556355-unsplash-dombai.png);
+}
+.popup__image-cont {
+  width: 100%;
+  max-width: 810px;
+  height: 514px;
+  border: 2px solid grey;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  border-radius: 25px;
+  position: relative;
+  display: block;
+  justify-content: center;
+  align-items: center;  
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
