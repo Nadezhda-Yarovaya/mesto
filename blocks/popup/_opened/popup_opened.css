@@ -1,7 +1,5 @@
 .popup_opened {
-  display: flex;
-}
-
-.lightbox_opened {
-  display: flex;
+  transition: visibility 0.7s, opacity 0.5s ease;
+  visibility: visible;
+  opacity: 1;
 }

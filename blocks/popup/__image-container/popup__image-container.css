@@ -1,25 +1,30 @@
-.popup__container {
+.popup__image-container {
   width: 100%;
-  max-width: 430px;
+  max-width: 75vw;
+  height: 75vh;
+  border: 0;
   padding: 0;
   margin: 0;
   background-color: white;
-  color: black;
-  border-radius: 15px;
   position: relative;
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 @media screen and (max-width: 680px) {
-  .popup__container {
+  .popup__image-container {
     max-width: 380px;
+    height: 70vh;
   }
 }
 
 @media screen and (max-width: 450px) {
-  .popup__container {
+  .popup__image-container {
     max-width: 282px;
+    height: 60vh;
   }
 }

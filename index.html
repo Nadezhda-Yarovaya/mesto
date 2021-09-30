@@ -11,9 +11,7 @@
     <div class="page">
       <header class="header page__header">
         <a href="#" class="header__logo-link">
-          
-          <img
-            src="images/mainlogo.svg"
+          <img src="images/mainlogo.svg"
             alt="Логотип Место Россия"
             class="header__logo"
           />
@@ -40,17 +38,15 @@
           ></button>
         </section>
         <section class="elements main__elements-section">
-          <ul class="elements__list">
-          </ul>
+          <ul class="elements__list"></ul>
         </section>
       </main>
       <footer class="footer page__footer">
         <p class="footer__text">&copy; 2021 Mesto Russia</p>
       </footer>
     </div>
-    <div class="popup">
-      <!-- all 3 in a single popup -->
-      <div class="popup__container"> <!-- this is edit profile, change name-->
+    <div class="popup popup_type_edit-profile">
+      <div class="popup__container">
         <form class="popup__form" name="popup-form">
           <p class="popup__paragraph">Редактировать профиль</p>
           <input
@@ -74,9 +70,9 @@
         ></button>
       </div>
     </div>
-<!-- new item add-->
-    <div class="popup popup__new-place">
-      <div class="popup__new-place-cont"> <!-- this is add new place-->
+
+    <div class="popup popup_type_new-place">
+      <div class="popup__container">
         <form class="popup__form" name="popup-form">
           <p class="popup__paragraph">Новое место</p>
           <input
@@ -91,7 +87,7 @@
             placeholder="Ссылка на фото"
             required
           />
-          <input type="submit" class="popup__submit" value="Сохранить" />
+          <input type="submit" class="popup__submit" value="Создать" />
         </form>
         <button
           type="button"
@@ -99,24 +95,28 @@
           aria-label="закрыть окно"
         ></button>
       </div>
-    </div>  
-    <div class="popup popup__image">
-      <div class="popup__image-cont"> <!-- lightbox for image <div class="lightbox"> -->    
+    </div>
+
+    <div class="popup popup_type_image">
+      <div class="popup__image-container">
         <button
           type="button"
           class="popup__close-btn popup__close-img"
           aria-label="закрыть окно"
         ></button>
       </div>
+      <p class="popup__img-paragraph"></p>
     </div>
 
     <template class="template-cards">
       <li class="elements__element">
-        <button type="button" aria-label="Удалить место" class="elements__delete"></button>
-        <img
-        class="elements__image-btn"
-      >          
-      <div class="elements__title-container">
+        <button
+          type="button"
+          aria-label="Удалить место"
+          class="elements__delete"
+        ></button>
+        <img class="elements__image-btn" />
+        <div class="elements__title-container">
           <h2 class="elements__title"></h2>
           <button
             type="button"
