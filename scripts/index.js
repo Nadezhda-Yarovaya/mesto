@@ -65,6 +65,7 @@ function createCard(elTitle, elLink) {
     .content.cloneNode(true);
   newCard.querySelector(".elements__title").textContent = elTitle;
   newCard.querySelector(".elements__image-btn").src = elLink;
+  newCard.querySelector(".elements__image-btn").alt = elTitle;
   setListenerstoDelete(newCard);
   setListenerstoImages(newCard);
   setListenerstoLikes(newCard);
@@ -131,7 +132,7 @@ buttonNewPopup.addEventListener("click", () => openPopupByType(popupNew));
 popupEdit
   .querySelector(".popup__close-btn")
   .addEventListener("click", () => closePopupByType(popupEdit));
-  
+
 popupNew
   .querySelector(".popup__close-btn")
   .addEventListener("click", () => closePopupByType(popupNew));
