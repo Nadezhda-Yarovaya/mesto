@@ -84,7 +84,7 @@
           <input
             type="text"
             class="popup__input popup__input_type_link"
-            placeholder="Ссылка на фото"
+            placeholder="Ссылка на картинку"
             required
           />
           <input type="submit" class="popup__submit" value="Создать" />
@@ -99,13 +99,15 @@
 
     <div class="popup popup_type_image">
       <div class="popup__image-container">
-        <button
+      <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="пример изображения"/>
+      <p class="popup__img-paragraph"></p>
+      <button
           type="button"
           class="popup__close-btn popup__close-img"
           aria-label="закрыть окно"
         ></button>
       </div>
-      <p class="popup__img-paragraph"></p>
+       
     </div>
 
     <template class="template-cards">

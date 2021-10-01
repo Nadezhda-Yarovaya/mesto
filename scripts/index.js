@@ -10,6 +10,10 @@ const popupImage = document.querySelector(".popup_type_image");
 const buttonEditPopup = document.querySelector(".profile__edit-btn");
 const buttonNewPopup = document.querySelector(".profile__add-btn");
 const elementsCont = document.querySelector(".elements__list");
+const imageContainer = document.querySelector(".popup__image-container");
+const newImagePopup = document.querySelector(".popup__image");
+const imageParagraph = document.querySelector(".popup__img-paragraph");
+const templateCards = document.querySelector(".template-cards");
 
 const initialCards = [
   {
@@ -39,36 +43,28 @@ const initialCards = [
 ];
 
 /*все функции */
-function setListenerstoDelete(card) {
+function setListenersCard(card) {  
+  const currentImgLink = card.querySelector(".elements__image-btn").src;
+  const currentTitle = card.querySelector(".elements__title").textContent;
+
+  card.querySelector(".elements__image-btn").addEventListener("click", () => {   
+  newImagePopup.src = `${currentImgLink}`; 
+  newImagePopup.alt = `${currentTitle}`; 
+  imageParagraph.textContent = currentTitle;
+    openPopupByType(popupImage);
+  });
+
+  card.querySelector(".elements__like").addEventListener("click", toggleLikes);
+  
   card.querySelector(".elements__delete").addEventListener("click", deleteCard);
 }
 
-function setListenerstoImages(card) {
-  const currentImgLink = card.querySelector(".elements__image-btn").src;
-  const currentTitle = card.querySelector(".elements__title").textContent;
-  card.querySelector(".elements__image-btn").addEventListener("click", () => {    
-    document.querySelector(
-      ".popup__image-container"
-    ).style.backgroundImage = `url(${currentImgLink})`;
-    document.querySelector(".popup__img-paragraph").textContent = currentTitle;
-    openPopupByType(popupImage);
-  });
-}
-
-function setListenerstoLikes(card) {
-  card.querySelector(".elements__like").addEventListener("click", toggleLikes);
-}
-
 function createCard(elTitle, elLink) {
-  const newCard = document
-    .querySelector(".template-cards")
-    .content.cloneNode(true);
+  const newCard = templateCards.content.cloneNode(true);
   newCard.querySelector(".elements__title").textContent = elTitle;
   newCard.querySelector(".elements__image-btn").src = elLink;
   newCard.querySelector(".elements__image-btn").alt = elTitle;
-  setListenerstoDelete(newCard);
-  setListenerstoImages(newCard);
-  setListenerstoLikes(newCard);
+  setListenersCard(newCard);
   elementsCont.prepend(newCard);
 }
 
@@ -144,5 +140,3 @@ popupImage
 popupForm.addEventListener("submit", formSubmitHandler);
 
 popupNew.querySelector(".popup__form").addEventListener("submit", addCard);
-
-

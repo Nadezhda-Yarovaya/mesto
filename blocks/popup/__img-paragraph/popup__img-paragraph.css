@@ -1,8 +1,13 @@
  .popup__img-paragraph {
-     width: 100%;
-     max-width: 75vw;
+     max-width: 320px;
      font-size: 12px;
      color: white;
      font-family: 'Inter';
      line-height: 15px;
+     margin: 10px 0 0 0;
+     padding: 0;
+ }
+
+ .popup__image-container {
+     display: flex;
  }
