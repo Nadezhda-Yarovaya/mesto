@@ -101,8 +101,9 @@ function addCard(e) {
   const linkOfPlaceNew = e.currentTarget.querySelector(
     ".popup__input_type_link"
   ).value;
+  elementsCont.prepend(createCard(nameOfPlaceNew, linkOfPlaceNew));    
+  closePopupByType(popupNew);
   e.currentTarget.reset();
-  return createCard(nameOfPlaceNew, linkOfPlaceNew);
 }
 
 function deleteCard(e) {
@@ -113,7 +114,7 @@ function deleteCard(e) {
 /*все вызовы функций */
 /*добавляем все карточки в один массив*/
 const finalCards = initialCards.map(function (element) {
-  return (element = createCard(element.name, element.link));
+  return createCard(element.name, element.link);
 });
 
 /*вставляем готовые карточки в HTML*/
@@ -144,6 +145,5 @@ popupImage
 popupEditForm.addEventListener("submit", formSubmitHandler);
 
 pupupNewForm.addEventListener("submit", (event) => {
-  elementsCont.prepend(addCard(event));
-  closePopupByType(popupNew);
+  addCard(event);
 });
