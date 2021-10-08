@@ -47,20 +47,30 @@
     </div>
     <div class="popup popup_type_edit-profile">
       <div class="popup__container">
-        <form class="popup__form" name="popup-form">
+        <form class="popup__form" name="editform" novalidate>
           <p class="popup__paragraph">Редактировать профиль</p>
           <input
             type="text"
             class="popup__input popup__input_type_name"
             placeholder="ФИО"
+            name="name"
             required
+            minlength="5"
+            maxlength="40"
+            id = "name-input"
           />
+          <span class="name-input-error popup__input-error">неправильно указали имя</span>
+
           <input
             type="text"
             class="popup__input popup__input_type_job"
             placeholder="должность"
+            name="job"
             required
+            maxlength="200"
+            id="job-input"
           />
+          <span class="job-input-error popup__input-error"></span>
           <input type="submit" class="popup__submit" value="Сохранить" />
         </form>
         <button
@@ -73,21 +83,27 @@
 
     <div class="popup popup_type_new-place">
       <div class="popup__container">
-        <form class="popup__form" name="popup-form">
+        <form class="popup__form" name="newplaceform">
           <p class="popup__paragraph">Новое место</p>
           <input
             type="text"
             class="popup__input popup__input_type_place"
             placeholder="Название Места"
             required
+            name = "placeName"
+            id="newplace-input"
           />
+          <span class="newplace-input-error popup__input-error"></span>
           <input
             type="text"
             class="popup__input popup__input_type_link"
             placeholder="Ссылка на картинку"
             required
+            name = "url"
+            id="url-input"
           />
-          <input type="submit" class="popup__submit" value="Создать" />
+          <span class="url-input-error popup__input-error"></span>
+          <input type="submit" class="popup__submit" value="Создать" /> <!-- в теории говорили что сабмит лучше кнопкой - больше функционала -->
         </form>
         <button
           type="button"
@@ -129,5 +145,6 @@
       </li>
     </template>
     <script src="scripts/index.js"></script>
+    <script src="scripts/validate.js"></script>
   </body>
 </html>

@@ -15,6 +15,11 @@ const newImagePopup = document.querySelector(".popup__image");
 const imageParagraph = document.querySelector(".popup__img-paragraph");
 const templateCards = document.querySelector(".template-cards");
 
+const form=document.forms.editform;
+const name = form.elements.name;
+const title =form.elements.title;
+/*change everywhere */
+
 const initialCards = [
   {
     name: "Архыз",
@@ -144,6 +149,9 @@ popupImage
 
 popupEditForm.addEventListener("submit", formSubmitHandler);
 
-pupupNewForm.addEventListener("submit", (event) => {
-  addCard(event);
-});
+pupupNewForm.addEventListener("submit", addCard);
+
+
+
+
+

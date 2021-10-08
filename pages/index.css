@@ -48,3 +48,25 @@
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__img-paragraph/popup__img-paragraph.css);
 @import url(../blocks/popup/_type/popup_type_image.css);
+
+/* обе кнопки .popup__submit*/
+.popup__submit_inactive {
+    color: rgba(0,0,0,0.15);    
+  background-color: white;
+  border: 1px solid rgba(0,0,0,0.15);
+}
+
+.popup__input-error {
+    width: 100%;
+    padding: 5px 0 25px 0;
+    color: red;
+    font-size: 12px;
+    line-height: 15px;
+    display: none;
+}
+.popup__input-error_active {
+    display: block;
+}
+
+.popup__input:valid {border: 1px solid green;}
+.popup__input:invalid {border: 1px solid red;}
