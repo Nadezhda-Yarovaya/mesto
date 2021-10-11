@@ -1,71 +1,74 @@
-/* мне формы по сути не нужны, ищут по array from и селектору 
-на 8 10 все работает, только ссылку надо проверять плюс серый цвет всего */
-const editForm=document.forms.editform;
-/*
-const inputName = editForm.elements.name;
-const inputTitle =editForm.elements.title;*/
+/*переменные */
+const validationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__submit",
+  inactiveButtonClass: "popup__submit_invalid",
+  inputErrorClass: "popup__input_state_invalid",
+};
 
-/* another form to add new place */
-const newPlaceForm = document.forms.newplaceform;
-/*
-const inputPlaceName = newPlaceForm.elements.placeName;
-const inputUrl = newPlaceForm.elements.url;*/
+/*functions*/
+function showInputError(formElement, inputElement, errorMessage, config) {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  errorElement.textContent = errorMessage;
+  inputElement.classList.add(config.inputErrorClass);
+}
 
+function hideInputError(formElement, inputElement, config) {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  errorElement.textContent = "";
+  inputElement.classList.remove(config.inputErrorClass);
+}
 
-  function showInputError(formElement, inputElement, errorMessage) {
-    const errorPlacer = formElement.querySelector(`.${inputElement.id}-error`);
-    errorPlacer.textContent = errorMessage;    
-    errorPlacer.classList.add('popup__input-error_active');
+function isValid(formElement, config) {
+  const inputsList = formElement.querySelectorAll(".popup__input");
+  Array.from(inputsList).forEach((element) => {
+    if (!element.validity.valid) {
+      showInputError(formElement, element, element.validationMessage, config);
+    } else {
+      hideInputError(formElement, element, config);
+    }
+  });
+}
+
+const setEventListeners = (formElement, config) => {
+  const inputsList = Array.from(
+    formElement.querySelectorAll(config.inputSelector)
+  );
+  const submitBut = formElement.querySelector(config.submitButtonSelector);
+
+  inputsList.forEach((inputElement) => {
+    inputElement.addEventListener("input", () => {
+      const isFormValid = formElement.checkValidity();
+      isValid(formElement, config);
+      toggleButtonState(submitBut, isFormValid, config);
+    });
+  });
+
+  formElement.addEventListener("submit", (evt) => {
+    evt.preventDefault();
+  });
+};
+
+const toggleButtonState = (button, isActive, config) => {
+  if (isActive) {
+    button.classList.remove(config.inactiveButtonClass);
+    button.disabled = false;
+  } else {
+    button.classList.add(config.inactiveButtonClass);
+    button.disabled = true;
   }
+};
 
-  function hideInputError(formElement, inputElement) {
-      
-    const errorPlacer = formElement.querySelector(`.${inputElement.id}-error`);
-    errorPlacer.classList.remove('popup__input-error_active');
-    errorPlacer.textContent ='';
-
+// MAIN function to enable Validation
+function enableValidation(config) {
+  // ищем ВСЕ формы в документе
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  //назначим слушателей на все формы
+  formList.forEach((formElement) => {
+    setEventListeners(formElement, config);
+  });
 }
 
-function isValid(formElement, inputElement) { /*два пар-ра - 1й - название формы, а 2й - название элемента который проверяем */
-if (!inputElement.validity.valid) { /* says it's undefined */
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-} else {
-    hideInputError(formElement, inputElement);
-}
-}
-
-  
-const setEventListeners = (formElement) => { /*беру форму и в ней нахожу все инпуты */
-    const inputsList = Array.from(formElement.querySelectorAll('.popup__input'));
-      inputsList.forEach((inputElement) => {
-      inputElement.addEventListener('input', () => {
-        /*console.log(formElement + 'inp' + inputElement);*/
-        isValid(formElement, inputElement);
-      });
-    });
-  }; 
-
-  
-function enableValidation() { /* найдет и переберет все формы в документе */
-
-/* передать объекты в аргументы функции {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible',
-}*/
-
-    const formList = Array.from(document.querySelectorAll('.popup__form')); /* нашли все формы */
-  
-    formList.forEach((formElement) => {
-      formElement.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-      });
-      setEventListeners(formElement); /*назначим слушателя на все (элемнты) формы */
-    });
-  };
-  
-  // Вызовем функцию
-  enableValidation();
+// Вызовем функцию
+enableValidation(validationConfig);

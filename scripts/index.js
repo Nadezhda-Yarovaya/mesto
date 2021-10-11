@@ -1,12 +1,12 @@
 const nameInput = document.querySelector(".profile__name");
 const jobInput = document.querySelector(".profile__job");
 const popupEdit = document.querySelector(".popup_type_edit-profile");
-const popupEditForm = popupEdit.querySelector(".popup__form");
-const nameResult = popupEdit.querySelector(".popup__input_type_name");
-const jobResult = popupEdit.querySelector(".popup__input_type_job");
 const popupNew = document.querySelector(".popup_type_new-place");
-const pupupNewForm = popupNew.querySelector(".popup__form");
 const popupImage = document.querySelector(".popup_type_image");
+const popupEditForm = document.forms.editform;
+const nameResult = popupEditForm.elements.name;
+const jobResult = popupEditForm.elements.job;
+const popupNewForm = document.forms.newplaceform;
 const buttonEditPopup = document.querySelector(".profile__edit-btn");
 const buttonNewPopup = document.querySelector(".profile__add-btn");
 const elementsCont = document.querySelector(".elements__list");
@@ -14,11 +14,23 @@ const imageContainer = document.querySelector(".popup__image-container");
 const newImagePopup = document.querySelector(".popup__image");
 const imageParagraph = document.querySelector(".popup__img-paragraph");
 const templateCards = document.querySelector(".template-cards");
+const newPlaceSubmit = popupNewForm.querySelector('.popup__submit');
 
-const form=document.forms.editform;
-const name = form.elements.name;
-const title =form.elements.title;
-/*change everywhere */
+
+const allPopups = document.querySelectorAll('.popup');
+Array.from(allPopups).forEach(element => {
+       element.addEventListener('click', (evt) => {
+                if(evt.target === evt.currentTarget) {
+                      closePopupByType(element); 
+                  }
+                  
+                    });
+        document.addEventListener('keydown', (evt) => {
+                      if(evt.key === 'Escape') {
+                            closePopupByType(element); 
+                      }
+                      });
+});
 
 const initialCards = [
   {
@@ -132,7 +144,10 @@ buttonEditPopup.addEventListener("click", () => {
   openPopupByType(popupEdit);
 });
 
-buttonNewPopup.addEventListener("click", () => openPopupByType(popupNew));
+buttonNewPopup.addEventListener("click", () => {
+  newPlaceSubmit.classList.add('popup__submit_invalid');
+  openPopupByType(popupNew);
+});
 
 /*closing popups*/
 popupEdit
@@ -149,7 +164,7 @@ popupImage
 
 popupEditForm.addEventListener("submit", formSubmitHandler);
 
-pupupNewForm.addEventListener("submit", addCard);
+popupNewForm.addEventListener("submit", addCard);
 
 
 
