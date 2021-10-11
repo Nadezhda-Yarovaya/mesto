@@ -20,15 +20,19 @@ function hideInputError(formElement, inputElement, config) {
   inputElement.classList.remove(config.inputErrorClass);
 }
 
-function isValid(formElement, config) {
-  const inputsList = formElement.querySelectorAll(".popup__input");
-  Array.from(inputsList).forEach((element) => {
-    if (!element.validity.valid) {
-      showInputError(formElement, element, element.validationMessage, config);
-    } else {
-      hideInputError(formElement, element, config);
-    }
-  });
+function isValid(formElement, inputElement, config) {
+  /*const inputsList = formElement.querySelectorAll(".popup__input");
+  Array.from(inputsList).forEach((element) => {*/
+  if (!inputElement.validity.valid) {
+    showInputError(
+      formElement,
+      inputElement,
+      inputElement.validationMessage,
+      config
+    );
+  } else {
+    hideInputError(formElement, inputElement, config);
+  }
 }
 
 const setEventListeners = (formElement, config) => {
@@ -40,7 +44,7 @@ const setEventListeners = (formElement, config) => {
   inputsList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
       const isFormValid = formElement.checkValidity();
-      isValid(formElement, config);
+      isValid(formElement, inputElement, config);
       toggleButtonState(submitBut, isFormValid, config);
     });
   });
