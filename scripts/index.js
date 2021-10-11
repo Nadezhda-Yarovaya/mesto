@@ -157,9 +157,16 @@ buttonEditPopup.addEventListener("click", () => {
   toggleButtonState(editSubmit, true, validationConfig);
 });
 
-buttonNewPopup.addEventListener("click", () => {
+buttonNewPopup.addEventListener("click", () => {  
+   /* при повторном открытии попапа добавления проверить на ошибки*/
+   const isValidorNot = popupNewForm.checkValidity();
+  if(!isValidorNot) {
   newPlaceSubmit.classList.add("popup__submit_invalid");
-  newPlaceSubmit.disabled = true;
+  newPlaceSubmit.disabled = true; }
+  else {
+    newPlaceSubmit.classList.remove("popup__submit_invalid");
+  newPlaceSubmit.disabled = false; 
+  }
   openPopupByType(popupNew);
 });
 
