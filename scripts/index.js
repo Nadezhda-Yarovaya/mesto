@@ -7,6 +7,7 @@ const popupEditForm = document.forms.editform;
 const nameResult = popupEditForm.elements.name;
 const jobResult = popupEditForm.elements.job;
 const popupNewForm = document.forms.newplaceform;
+const allInputsEdit = popupEdit.querySelectorAll('.popup__input');
 const buttonEditPopup = document.querySelector(".profile__edit-btn");
 const buttonNewPopup = document.querySelector(".profile__add-btn");
 const elementsCont = document.querySelector(".elements__list");
@@ -14,6 +15,7 @@ const imageContainer = document.querySelector(".popup__image-container");
 const newImagePopup = document.querySelector(".popup__image");
 const imageParagraph = document.querySelector(".popup__img-paragraph");
 const templateCards = document.querySelector(".template-cards");
+const editSubmit = popupEditForm.querySelector(".popup__submit");
 const newPlaceSubmit = popupNewForm.querySelector(".popup__submit");
 const allPopups = document.querySelectorAll(".popup");
 
@@ -50,6 +52,9 @@ Array.from(allPopups).forEach((element) => {
     if (evt.target === evt.currentTarget) {
       closePopupByType(element);
     }
+  });
+  element.querySelector(".popup__close-btn").addEventListener("click", () => {
+    closePopupByType(element)
   });
 });
 
@@ -144,6 +149,12 @@ finalCards.forEach((element) => {
 buttonEditPopup.addEventListener("click", () => {
   addValuestoPopup();
   openPopupByType(popupEdit);
+  /* обнулить ошибки валидации при повторном открытии попапа редактирования профиля*/
+  Array.from(allInputsEdit).forEach(element => {
+    hideInputError(popupEdit,element,validationConfig);
+  }  
+  );
+  toggleButtonState(editSubmit, true, validationConfig);
 });
 
 buttonNewPopup.addEventListener("click", () => {
@@ -153,6 +164,7 @@ buttonNewPopup.addEventListener("click", () => {
 });
 
 /*closing popups*/
+/*
 popupEdit
   .querySelector(".popup__close-btn")
   .addEventListener("click", () => closePopupByType(popupEdit));
@@ -164,6 +176,7 @@ popupNew
 popupImage
   .querySelector(".popup__close-btn")
   .addEventListener("click", () => closePopupByType(popupImage));
+*/
 
 popupEditForm.addEventListener("submit", formSubmitHandler);
 
