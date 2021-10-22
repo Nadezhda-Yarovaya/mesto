@@ -78,6 +78,21 @@ Array.from(allPopups).forEach((popup) => {
   });
 });
 
+<<<<<<< HEAD
+=======
+
+
+/*
+function createCard(elementName, elementLink) {
+  const newCard = templateCards.content.cloneNode(true);
+  newCard.querySelector(".elements__title").textContent = elementName;
+  newCard.querySelector(".elements__image-btn").src = elementLink;
+  newCard.querySelector(".elements__image-btn").alt = elementLink;
+  setListenersCard(newCard);
+  return newCard;
+} */
+
+>>>>>>> a952f1acc3fe59fe4da29d658b158cb583dd9626
 function openPopupByType(popupType) {
   popupType.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
@@ -109,7 +124,42 @@ function addCard() {
   
 }
 
+<<<<<<< HEAD
 /*повесить слушателей на попапы*/
+=======
+function addCard(e) {
+  e.preventDefault();
+  const nameOfPlaceNew = e.currentTarget.querySelector(
+    ".popup__input_type_place"
+  ).value;
+  const linkOfPlaceNew = e.currentTarget.querySelector(
+    ".popup__input_type_link"
+  ).value;
+  elementsCont.prepend(createCard(nameOfPlaceNew, linkOfPlaceNew));
+  closePopupByType(popupNew);
+  e.currentTarget.reset();
+}
+
+function deleteCard(e) {
+  const card = e.currentTarget.closest(".elements__element");
+  card.remove();
+}
+
+/*все вызовы функций */
+/*добавляем все карточки в один массив*/
+const finalCards = initialCards.map(function (element) {
+  return createCard(element.name, element.link);
+});
+
+/*вставляем готовые карточки в HTML*/
+finalCards.forEach((element) => {
+  
+  const card = new Card(element, '.elements__element');
+  /*
+  elementsCont.append(element);*/
+});
+
+>>>>>>> a952f1acc3fe59fe4da29d658b158cb583dd9626
 buttonEditPopup.addEventListener("click", () => {
   addValuestoPopup();
   /*при повторном открытии этого попапа удалить ошибки */
@@ -167,7 +217,13 @@ popupNewForm.addEventListener("submit", () => {
   closePopupByType(popupNew);
 });
 
+<<<<<<< HEAD
 export {nameInput, jobInput, popupEdit, popupNew, popupImage, imageParagraph, popupEditForm, nameResult, elementsCont, newImagePopup, popupNewForm};
   /*buttonNewPopup, editSubmit, newPlaceSubmit, allPopups
   jobResult, popupNewForm, allInputsEdit, buttonEditPopup.
   */
+=======
+popupNewForm.addEventListener("submit", addCard);
+
+export {elementsCont};
+>>>>>>> a952f1acc3fe59fe4da29d658b158cb583dd9626
