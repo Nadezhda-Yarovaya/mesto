@@ -23,7 +23,6 @@ function hideInputError(formElement, inputElement, config) {
 function isValid(formElement, inputElement, config) {
   /*const inputsList = formElement.querySelectorAll(".popup__input");
   Array.from(inputsList).forEach((element) => {*/
-    console.log(inputElement.validity.valid);
   if (!inputElement.validity.valid) {
     
     showInputError(
@@ -78,3 +77,5 @@ function enableValidation(config) {
 
 // Вызовем функцию
 enableValidation(validationConfig);
+
+export {validationConfig, showInputError, hideInputError, isValid, setEventListeners, toggleButtonState, enableValidation};
