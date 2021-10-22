@@ -1,23 +1,10 @@
 import {
-  nameInput,
-  jobInput,
-  popupEdit,
-  popupNew,
   popupImage,
-  popupEditForm,
-  nameResult,
-  elementsCont,
+  imageParagraph,
   newImagePopup,
-  popupNewForm,
+  validationConfig,
+  closeByEscape,
 } from "./index.js";
-/*переменные */
-const validationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__submit",
-  inactiveButtonClass: "popup__submit_invalid",
-  inputErrorClass: "popup__input_state_invalid",
-};
 
 class FormValidator {
   constructor(config, formtype) {
@@ -70,7 +57,7 @@ class FormValidator {
     const errorElement = this._formtype.querySelector(
       `.${this._input.id}-error`
     );
-    console.log('input: ' + this._input);
+    console.log("input: " + this._input);
     errorElement.textContent = this._input.validationMessage;
     this._input.classList.add(this._inputErrorClass);
   };
@@ -89,4 +76,4 @@ class FormValidator {
   };
 }
 
-export { FormValidator, validationConfig };
+export { FormValidator };

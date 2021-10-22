@@ -1,21 +1,15 @@
 import {
-  nameInput,
-  jobInput,
-  popupEdit,
-  popupNew,
   popupImage,
   imageParagraph,
-  popupEditForm,
-  nameResult,
-  elementsCont,
   newImagePopup,
+  validationConfig,
+  closeByEscape,
 } from "./index.js";
 
-class CardItem {
-  constructor(items, cardsSelector) {
-    this._items = items;
-    this._name = items.name;
-    this._link = items.link;
+class Card {
+  constructor(cardName, cardLink, cardsSelector) {
+    this._name = cardName;
+    this._link = cardLink;
     this._cardsSelector = cardsSelector;
   }
 
@@ -31,8 +25,8 @@ class CardItem {
     this._newCard = this._getTemplate();
     this._setEventListeners();
     this._newCard.querySelector(".elements__title").textContent =
-      this._items.name;
-    this._newCard.querySelector(".elements__image-btn").src = this._items.link;
+    this._name;
+    this._newCard.querySelector(".elements__image-btn").src = this._link;
     return this._newCard;
   };
 
@@ -44,16 +38,11 @@ class CardItem {
     popupImage.classList.add("popup_opened");
     newImagePopup.src = this._link;
     imageParagraph.textContent = this._name;
+    document.addEventListener("keydown", closeByEscape);
   };
 
-  _handleClosePopup() {
-    newImagePopup.src = "";
-    imageParagraph.textContent = "";
-    popupImage.remove("popup_opened");
-  }
-
   _toggleLikes() {
-    this._like=this._newCard.querySelector('.elements__like');
+    this._like = this._newCard.querySelector(".elements__like");
     this._like.classList.toggle("elements__like_active");
   }
 
@@ -64,8 +53,10 @@ class CardItem {
         this._handleOpenPopup();
       });
 
-      this._newCard.querySelector('.elements__like').addEventListener('click', () => {
-      this._toggleLikes();
+    this._newCard
+      .querySelector(".elements__like")
+      .addEventListener("click", () => {
+        this._toggleLikes();
       });
 
     this._newCard
@@ -76,4 +67,4 @@ class CardItem {
   };
 }
 
-export { CardItem };
+export { Card };
