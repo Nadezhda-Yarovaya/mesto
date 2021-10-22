@@ -60,22 +60,9 @@ Array.from(allPopups).forEach((element) => {
   });
 });
 
-function setListenersCard(card) {
-  const currentImgLink = card.querySelector(".elements__image-btn").src;
-  const currentTitle = card.querySelector(".elements__title").textContent;
 
-  card.querySelector(".elements__image-btn").addEventListener("click", () => {
-    newImagePopup.src = `${currentImgLink}`;
-    newImagePopup.alt = `${currentTitle}`;
-    imageParagraph.textContent = currentTitle;
-    openPopupByType(popupImage);
-  });
 
-  card.querySelector(".elements__like").addEventListener("click", toggleLikes);
-
-  card.querySelector(".elements__delete").addEventListener("click", deleteCard);
-}
-
+/*
 function createCard(elementName, elementLink) {
   const newCard = templateCards.content.cloneNode(true);
   newCard.querySelector(".elements__title").textContent = elementName;
@@ -83,7 +70,7 @@ function createCard(elementName, elementLink) {
   newCard.querySelector(".elements__image-btn").alt = elementLink;
   setListenersCard(newCard);
   return newCard;
-}
+} */
 
 function openPopupByType(popupType) {
   popupType.classList.add("popup_opened");
@@ -145,7 +132,10 @@ const finalCards = initialCards.map(function (element) {
 
 /*вставляем готовые карточки в HTML*/
 finalCards.forEach((element) => {
-  elementsCont.append(element);
+  
+  const card = new Card(element, '.elements__element');
+  /*
+  elementsCont.append(element);*/
 });
 
 buttonEditPopup.addEventListener("click", () => {
@@ -190,3 +180,5 @@ popupImage
 popupEditForm.addEventListener("submit", formSubmitHandler);
 
 popupNewForm.addEventListener("submit", addCard);
+
+export {elementsCont};
