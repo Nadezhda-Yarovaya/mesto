@@ -1,13 +1,6 @@
 class Card {
-    constructor(data, cardSelector) {
-        this._formSelector = data.formSelector;
-        this._inputSelector = data.inputSelector;
+    constructor() {
 
     }
 }
-
-class CurrentCard extends Card {
-
-}
-
 export {Card};
