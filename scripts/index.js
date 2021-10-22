@@ -1,3 +1,5 @@
+import {validationConfig, showInputError, hideInputError, isValid, setEventListeners, toggleButtonState, enableValidation} from './FormValidator.js';
+import {Card} from './Card.js';
 const nameInput = document.querySelector(".profile__name");
 const jobInput = document.querySelector(".profile__job");
 const popupEdit = document.querySelector(".popup_type_edit-profile");
