@@ -3,6 +3,7 @@ import {
   imageParagraph,
   newImagePopup,
   validationConfig,
+  openPopupByType,
   closeByEscape,
 } from "./index.js";
 
@@ -13,18 +14,17 @@ class FormValidator {
       (this._submitButtonSelector = config.submitButtonSelector),
       (this._inactiveButtonClass = config.inactiveButtonClass),
       (this._inputErrorClass = config.inputErrorClass),
-      (this._formtype = formtype);
+      (this._formtype = formtype),
+      (this._inputsList = Array.from(
+        this._formtype.querySelectorAll(this._inputSelector)
+      ));
+    this._submitBut = this._formtype.querySelector(this._submitButtonSelector);
   }
 
   _setEventListeners = () => {
-    const inputsList = Array.from(
-      this._formtype.querySelectorAll(this._inputSelector)
-    );
-
-    inputsList.forEach((input) => {
-      input.addEventListener("input", () => {
-        this._input = input;
-        this._isFormValid = this._formtype.checkValidity();
+    this._inputsList.forEach((inputElement) => {
+      inputElement.addEventListener("input", () => {
+        this._input = inputElement;
         this._isValid();
         this._toggleButtonState();
       });
@@ -35,13 +35,12 @@ class FormValidator {
   };
 
   _toggleButtonState = () => {
-    const submitBut = this._formtype.querySelector(this._submitButtonSelector);
-    if (this._isFormValid) {
-      submitBut.classList.remove(this._inactiveButtonClass);
-      submitBut.disabled = false;
+    if (this._formtype.checkValidity()) {
+      this._submitBut.classList.remove(this._inactiveButtonClass);
+      this._submitBut.disabled = false;
     } else {
-      submitBut.classList.add(this._inactiveButtonClass);
-      submitBut.disabled = true;
+      this._submitBut.classList.add(this._inactiveButtonClass);
+      this._submitBut.disabled = true;
     }
   };
 
@@ -57,7 +56,6 @@ class FormValidator {
     const errorElement = this._formtype.querySelector(
       `.${this._input.id}-error`
     );
-    console.log("input: " + this._input);
     errorElement.textContent = this._input.validationMessage;
     this._input.classList.add(this._inputErrorClass);
   };
@@ -69,6 +67,15 @@ class FormValidator {
     errorElement.textContent = "";
     this._input.classList.remove(this._inputErrorClass);
   };
+
+  /*public method*/
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputsList.forEach((inputElement) => {
+      this._input = inputElement;
+      this._hideInputError();
+    });
+  }
 
   /*public method*/
   enableValidation = () => {

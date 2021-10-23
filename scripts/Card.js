@@ -3,6 +3,7 @@ import {
   imageParagraph,
   newImagePopup,
   validationConfig,
+  openPopupByType,
   closeByEscape,
 } from "./index.js";
 
@@ -11,6 +12,11 @@ class Card {
     this._name = cardName;
     this._link = cardLink;
     this._cardsSelector = cardsSelector;
+    this._newCard = this._getTemplate();
+    this._elementsTitle = this._newCard.querySelector(".elements__title");
+    this._imgButton = this._newCard.querySelector(".elements__image-btn");    
+    this._like = this._newCard.querySelector(".elements__like");
+    this._elementDelete = this._newCard.querySelector(".elements__delete");
   }
 
   _getTemplate() {
@@ -22,11 +28,10 @@ class Card {
   }
 
   generateCard = () => {
-    this._newCard = this._getTemplate();
     this._setEventListeners();
-    this._newCard.querySelector(".elements__title").textContent =
-    this._name;
-    this._newCard.querySelector(".elements__image-btn").src = this._link;
+    this._elementsTitle.textContent = this._name;
+    this._imgButton.src = this._link;
+    this._imgButton.alt = this._name;
     return this._newCard;
   };
 
@@ -35,33 +40,26 @@ class Card {
   };
 
   _handleOpenPopup = () => {
-    popupImage.classList.add("popup_opened");
     newImagePopup.src = this._link;
-    imageParagraph.textContent = this._name;
-    document.addEventListener("keydown", closeByEscape);
+    newImagePopup.alt = this._name;
+    imageParagraph.textContent = this._name;    
+    openPopupByType(popupImage);
   };
 
   _toggleLikes() {
-    this._like = this._newCard.querySelector(".elements__like");
     this._like.classList.toggle("elements__like_active");
   }
 
   _setEventListeners = () => {
-    this._newCard
-      .querySelector(".elements__image-btn")
-      .addEventListener("click", () => {
+    this._imgButton.addEventListener("click", () => {
         this._handleOpenPopup();
       });
 
-    this._newCard
-      .querySelector(".elements__like")
-      .addEventListener("click", () => {
+      this._like.addEventListener("click", () => {
         this._toggleLikes();
       });
 
-    this._newCard
-      .querySelector(".elements__delete")
-      .addEventListener("click", () => {
+      this._elementDelete.addEventListener("click", () => {
         this._deleteCard();
       });
   };

@@ -20,9 +20,6 @@ const imageParagraph = document.querySelector(".popup__img-paragraph");
 const editSubmit = popupEditForm.querySelector(".popup__submit");
 const newPlaceSubmit = popupNewForm.querySelector(".popup__submit");
 const allPopups = document.querySelectorAll(".popup");
-/*
-const imageContainer = document.querySelector(".popup__image-container");
-const templateCards = document.querySelector(".template-cards");*/
 
 const initialCards = [
   {
@@ -129,29 +126,15 @@ function formSubmitHandler(event) {
 /*повесить слушателей на попапы*/
 buttonEditPopup.addEventListener("click", () => {
   addValuestoPopup();
-  /*при повторном открытии этого попапа удалить ошибки */
-  allInputsEdit.forEach((el) => {
-    el.classList.remove(validationConfig.inputErrorClass);
-    popupEditForm.querySelector(`.${el.id}-error`).textContent = "";
-  });
-  editSubmit.classList.remove(validationConfig.inactiveButtonClass);
-  editSubmit.disabled = false;
-
   openPopupByType(popupEdit);
+  validationEdit.resetValidation();
 });
 
 buttonNewPopup.addEventListener("click", () => {
-  /* при повторном открытии попапа без перезагрузки страницы проверить на валидность, удалить ошибки*/
-  const isValidorNot = popupNewForm.checkValidity();
-  if (!isValidorNot) {
-    newPlaceSubmit.classList.add("popup__submit_invalid");
-    newPlaceSubmit.disabled = true;
-  } else {
-    newPlaceSubmit.classList.remove("popup__submit_invalid");
-    newPlaceSubmit.disabled = false;
-  }
   openPopupByType(popupNew);
+  validationNewCard.resetValidation();
 });
+/*event listeners for cards are in the Card class*/
 
 /*submits on both popups*/
 popupEditForm.addEventListener("submit", formSubmitHandler);
@@ -168,5 +151,6 @@ export {
   imageParagraph,
   newImagePopup,
   validationConfig,
+  openPopupByType,
   closeByEscape,
 };
