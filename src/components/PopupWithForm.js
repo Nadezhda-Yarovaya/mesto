@@ -7,7 +7,7 @@ import {
   jobResult,
   nameInput,
   jobInput,
-} from "./index.js";
+} from "../pages/index.js";
 
 import Popup from "./Popup.js";
 

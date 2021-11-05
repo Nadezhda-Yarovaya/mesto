@@ -5,7 +5,7 @@ import {
   validationConfig,
   nameResult,
   jobResult,
-} from "./index.js";
+} from "../pages/index.js";
 
 export default class FormValidator {
   constructor(config, formtype) {

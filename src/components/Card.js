@@ -7,9 +7,9 @@ import {
   jobResult,
   nameInput,
   jobInput,
-} from "./index.js";
+} from "../pages/index.js";
 
-import PopupWithImage from "../scripts/PopupWithImage.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 export default class Card {
   constructor({ formData, cardsSelector, handleCardClick }) {
