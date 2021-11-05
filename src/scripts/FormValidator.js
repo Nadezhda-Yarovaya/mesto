@@ -1,15 +1,13 @@
 import {
-    
   popupImage,
   imageParagraph,
   newImagePopup,
   validationConfig,
   nameResult,
-  jobResult
-
+  jobResult,
 } from "./index.js";
 
-class FormValidator {
+export default class FormValidator {
   constructor(config, formtype) {
     (this._formSelector = config.formSelector),
       (this._inputSelector = config.inputSelector),
@@ -84,5 +82,3 @@ class FormValidator {
     this._setEventListeners();
   };
 }
-
-export { FormValidator };

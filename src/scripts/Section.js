@@ -1,13 +1,13 @@
 import {
-    popupImage,
-    imageParagraph,
-    newImagePopup,
-    validationConfig,
-    nameResult,
-    jobResult,
-    nameInput,
-    jobInput
-  } from "./index.js";
+  popupImage,
+  imageParagraph,
+  newImagePopup,
+  validationConfig,
+  nameResult,
+  jobResult,
+  nameInput,
+  jobInput,
+} from "./index.js";
 
 export default class Section {
   constructor({ items, renderer }, containerSelector) {

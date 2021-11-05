@@ -6,12 +6,12 @@ import {
   nameResult,
   jobResult,
   nameInput,
-  jobInput
+  jobInput,
 } from "./index.js";
 
 export default class Popup {
-  constructor( { popupSelector }) {
-    this._popupSelector = popupSelector;    
+  constructor({ popupSelector }) {
+    this._popupSelector = popupSelector;
     this._currentPopup = document.querySelector(this._popupSelector);
   }
 
@@ -23,25 +23,25 @@ export default class Popup {
 
   open() {
     this._currentPopup.classList.add("popup_opened");
-    document.addEventListener("keydown", this._handleEscClose.bind(this)); 
-    this.setEventListeners();
+    document.addEventListener("keydown", (evt) => this._handleEscClose(evt));
   }
 
   close() {
-    document.removeEventListener("keydown", this._handleEscClose.bind(this));
     this._currentPopup.classList.remove("popup_opened");
+    document.removeEventListener("keydown", (evt) => this._handleEscClose(evt));
   }
 
-  setEventListeners() {      
-    this._currentPopup.querySelector(".popup__close-btn").addEventListener("click", () => {
+  setEventListeners() {
+    this._currentPopup
+      .querySelector(".popup__close-btn")
+      .addEventListener("click", () => {
         this.close();
       });
 
-      this._currentPopup.addEventListener("click", (evt) => {
-        if (evt.target === evt.currentTarget) {
-          this. close();
-        }
-  });
-
-}
+    this._currentPopup.addEventListener("click", (evt) => {
+      if (evt.target === evt.currentTarget) {
+        this.close();
+      }
+    });
+  }
 }

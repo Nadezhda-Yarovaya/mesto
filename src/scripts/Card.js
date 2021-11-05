@@ -1,7 +1,3 @@
-/*Свяжите класс Card c попапом. Сделайте так, чтобы Card принимал в конструктор функцию handleCardClick.
- Эта функция должна открывать попап с картинкой при клике на карточку.
-*/
-
 import {
   popupImage,
   imageParagraph,
@@ -10,25 +6,28 @@ import {
   nameResult,
   jobResult,
   nameInput,
-  jobInput
+  jobInput,
 } from "./index.js";
 
-class Card {
-  constructor({formData, cardsSelector, handleCardClick }) {
+import PopupWithImage from "../scripts/PopupWithImage.js";
+
+export default class Card {
+  constructor({ formData, cardsSelector, handleCardClick }) {
     this._name = formData.name;
     this._link = formData.link;
     this._cardsSelector = cardsSelector;
     this._handleCardClick = handleCardClick;
     this._newCard = this._getTemplate();
     this._elementsTitle = this._newCard.querySelector(".elements__title");
-    this._imgButton = this._newCard.querySelector(".elements__image-btn");    
+    this._imgButton = this._newCard.querySelector(".elements__image-btn");
     this._like = this._newCard.querySelector(".elements__like");
     this._elementDelete = this._newCard.querySelector(".elements__delete");
+    this._popupImageOfCard = new PopupWithImage({
+      popupSelector: ".popup_type_image",
+      popupImg: this._link,
+      popupNote: this._name,
+    });
   }
-  /*Свяжите класс Card c попапом. Сделайте так, чтобы Card принимал в конструктор функцию handleCardClick. 
-  
-  Эта функция должна открывать попап с картинкой при клике на карточку.
-  */
 
   _getTemplate() {
     const newCard = document
@@ -50,25 +49,21 @@ class Card {
     this._newCard.remove();
   };
 
-
-
   _toggleLikes() {
     this._like.classList.toggle("elements__like_active");
   }
 
   _setEventListeners = () => {
+    this._imgButton.addEventListener("click", () => {
+      this._handleCardClick(this._popupImageOfCard);
+    });
 
-    this._imgButton.addEventListener("click", this._handleCardClick.bind(this));
+    this._like.addEventListener("click", () => {
+      this._toggleLikes();
+    });
 
-      this._like.addEventListener("click", () => {
-        this._toggleLikes();
-      });
-
-      this._elementDelete.addEventListener("click", () => {
-        this._deleteCard();
-      });
-      
+    this._elementDelete.addEventListener("click", () => {
+      this._deleteCard();
+    });
   };
 }
-
-export { Card };
