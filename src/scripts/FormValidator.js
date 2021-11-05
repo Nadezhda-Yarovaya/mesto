@@ -1,10 +1,12 @@
 import {
+    
   popupImage,
   imageParagraph,
   newImagePopup,
   validationConfig,
-  openPopupByType,
-  closeByEscape,
+  nameResult,
+  jobResult
+
 } from "./index.js";
 
 class FormValidator {
