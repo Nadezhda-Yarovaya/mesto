@@ -1,13 +1,6 @@
-import {
-  popupImage,
-  imageParagraph,
-  newImagePopup,
-  validationConfig,
-  nameResult,
-  jobResult,
-  nameInput,
-  jobInput,
-} from "../pages/index.js";
+import {nameInput,jobInput,popupImage,popupEditForm,nameResult,jobResult,popupNewForm,buttonEditPopup,buttonNewPopup, elementsCont, 
+  newImagePopup, imageParagraph, validationConfig, initialCards} from "../utils/constants.js";
+
 
 import Popup from "./Popup.js";
 

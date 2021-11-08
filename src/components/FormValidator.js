@@ -1,11 +1,7 @@
-import {
-  popupImage,
-  imageParagraph,
-  newImagePopup,
-  validationConfig,
-  nameResult,
-  jobResult,
-} from "../pages/index.js";
+import {nameInput,jobInput,popupImage,popupEditForm,nameResult,jobResult,popupNewForm,buttonEditPopup,buttonNewPopup, elementsCont, 
+  newImagePopup, imageParagraph, validationConfig, initialCards} from "../utils/constants.js";
+  /*В текущем файле следует импортировать только validationConfig, остальные переменные здесь не нужны.
+  а как же импортируется всё, что эксопртируется?? надо еще эту тему изучить */
 
 export default class FormValidator {
   constructor(config, formtype) {

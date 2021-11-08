@@ -1,16 +1,3 @@
-import {
-  popupImage,
-  imageParagraph,
-  newImagePopup,
-  validationConfig,
-  nameResult,
-  jobResult,
-  nameInput,
-  jobInput,
-} from "../pages/index.js";
-
-import PopupWithImage from "./PopupWithImage.js";
-
 export default class Card {
   constructor({ formData, cardsSelector, handleCardClick }) {
     this._name = formData.name;
@@ -22,11 +9,7 @@ export default class Card {
     this._imgButton = this._newCard.querySelector(".elements__image-btn");
     this._like = this._newCard.querySelector(".elements__like");
     this._elementDelete = this._newCard.querySelector(".elements__delete");
-    this._popupImageOfCard = new PopupWithImage({
-      popupSelector: ".popup_type_image",
-      popupImg: this._link,
-      popupNote: this._name,
-    });
+   
   }
 
   _getTemplate() {

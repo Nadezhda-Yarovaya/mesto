@@ -1,3 +1,7 @@
+import {nameInput,jobInput,popupImage,popupEditForm,nameResult,jobResult,popupNewForm,buttonEditPopup,buttonNewPopup, elementsCont, 
+  newImagePopup, imageParagraph, validationConfig, initialCards} from "../utils/constants.js";
+
+
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -6,126 +10,86 @@ import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import "../pages/index.css";
 
-const nameInput = document.querySelector(".profile__name");
-const jobInput = document.querySelector(".profile__job");
-const popupImage = document.querySelector(".popup_type_image");
-const popupEditForm = document.forms.editform;
-const nameResult = popupEditForm.elements.profileName;
-const jobResult = popupEditForm.elements.job;
-const popupNewForm = document.forms.newplaceform;
-const buttonEditPopup = document.querySelector(".profile__edit-btn");
-const buttonNewPopup = document.querySelector(".profile__add-btn");
-const elementsCont = document.querySelector(".elements__list");
-const newImagePopup = document.querySelector(".popup__image");
-const imageParagraph = document.querySelector(".popup__img-paragraph");
-
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
-const validationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__submit",
-  inactiveButtonClass: "popup__submit_invalid",
-  inputErrorClass: "popup__input_state_invalid",
-};
-
 /*validations*/
 const validationEdit = new FormValidator(validationConfig, popupEditForm);
 validationEdit.enableValidation();
 const validationNewCard = new FormValidator(validationConfig, popupNewForm);
 validationNewCard.enableValidation();
 
+const userInfo = new UserInfo(".profile__name", ".profile__job"); /* .profile__name, .profile__job*/
+/*userInfo.getUserInfo(); */ /* get it from the page or from the form?? */
+
 /* EDIT profile class unit + button listener */
-const editPopupProfile = new PopupWithForm({
+const popupEditProfile = new PopupWithForm({
   popupSelector: ".popup_type_edit-profile",
   submitForm: (formInputsObj) => {
-    const userInfo = new UserInfo(formInputsObj.profileName, formInputsObj.job);
-    userInfo.setUserInfo();
+    userInfo.setUserInfo(nameResult.value, jobResult.value);
   },
 });
-editPopupProfile.setEventListeners();
 
+popupEditProfile.setEventListeners();
+/*объявлять типа токо один раз */
 buttonEditPopup.addEventListener("click", (evt) => {
   evt.preventDefault();
-  const userInfo = new UserInfo(nameInput.textContent, jobInput.textContent);
-  userInfo.getUserInfo();
-  editPopupProfile.open();
+  const currentUserInfo = userInfo.getUserInfo();
+  nameResult.value = currentUserInfo.profileName;
+  jobResult.value = currentUserInfo.job;
+  popupEditProfile.open();
 });
 
-/* NEW place class unit + listener */
-const newPopupPlace = new PopupWithForm({
-  popupSelector: ".popup_type_new-place",
-  submitForm: (dataItems) => {
-    const thisisNewCard = new Card({
-      formData: dataItems,
-      cardsSelector: ".template-cards",
-      handleCardClick: (popupImg) => {
-        popupImg.open();
-      },
-    });
-    const generatedCard = thisisNewCard.generateCard();
-    elementsCont.prepend(generatedCard);
-  },
+/*Экземпляр класса попапа с изображением следует создавать только 1 раз, 
+только в глобальной области видимости и только в файле index.js*/
+const imageInPopup = new PopupWithImage({
+  popupSelector: ".popup_type_image"
 });
-newPopupPlace.setEventListeners();
 
-buttonNewPopup.addEventListener("click", (evt) => {
-  evt.preventDefault();
-  newPopupPlace.open();
-});
+
+function createCard(element, selector) {
+  const newCard = new Card({
+    formData: element,
+    cardsSelector: selector,
+    handleCardClick: (imageInPopup) => {
+      imageInPopup.open(element.link, element.name);
+    },
+  });
+
+  
 
 /*initialize firsts, use section */
-const addSection = new Section(
+const cardList = new Section(
   {
     items: initialCards,
     renderer: (element) => {
-      const newCard = new Card({
-        formData: element,
-        cardsSelector: ".template-cards",
-        handleCardClick: (popupImg) => {
-          popupImg.open();
-        },
-      });
-      const finalCard = newCard.generateCard();
-      return finalCard;
+      const card = createCard(element, ".template-cards");
+      const finalCard = card.generateCard();
+      elementsCont.prepend(card);
+      /*return finalCard;*/
     },
   },
   ".elements__list"
 );
-addSection.renderSection();
+cardList.renderSection();
 
-export {
-  popupImage,
-  imageParagraph,
-  newImagePopup,
-  validationConfig,
-  nameResult,
-  jobResult,
-  nameInput,
-  jobInput,
-};
+/* NEW place class unit + listener */
+const popupAddPlace = new PopupWithForm({
+  popupSelector: ".popup_type_new-place",
+  submitForm: (dataItems) => {
+    const card = createCard(dataItems, ".template-cards");
+    const generatedCard = card.generateCard();
+    cardList.addItem(card);
+     /* elementsCont.prepend( generatedCard); тут ты права, но как?? В данном месте следует использовать метод addItem класса Section после объявления секции что ли в глобалке?*/
+  },
+});
+popupAddPlace.setEventListeners();
+
+buttonNewPopup.addEventListener("click", (evt) => {
+  evt.preventDefault();
+  popupAddPlace.open();
+});
+
+
+
+  return newCard;
+}
+
+export {};
