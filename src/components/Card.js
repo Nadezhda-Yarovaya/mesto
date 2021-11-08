@@ -9,22 +9,21 @@ export default class Card {
     this._imgButton = this._newCard.querySelector(".elements__image-btn");
     this._like = this._newCard.querySelector(".elements__like");
     this._elementDelete = this._newCard.querySelector(".elements__delete");
-   
   }
 
   _getTemplate() {
-    const newCard = document
+    this._template = document
       .querySelector(this._cardsSelector)
       .content.querySelector(".elements__element")
       .cloneNode(true);
-    return newCard;
+    return this._template;
   }
 
   generateCard = () => {
     this._elementsTitle.textContent = this._name;
-    this._setEventListeners();
     this._imgButton.src = this._link;
     this._imgButton.alt = this._name;
+    this._setEventListeners();
     return this._newCard;
   };
 
@@ -38,7 +37,7 @@ export default class Card {
 
   _setEventListeners = () => {
     this._imgButton.addEventListener("click", () => {
-      this._handleCardClick(this._popupImageOfCard);
+      this._handleCardClick();
     });
 
     this._like.addEventListener("click", () => {

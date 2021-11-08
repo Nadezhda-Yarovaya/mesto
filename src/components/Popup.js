@@ -2,9 +2,7 @@ export default class Popup {
   constructor({ popupSelector }) {
     this._popupSelector = popupSelector;
     this._currentPopup = document.querySelector(this._popupSelector);
-    this._escape = function(evt) {
-      this._handleEscClose(evt);
-    }
+    this._closeByEscBind = this._handleEscClose.bind(this);
   }
 
   _handleEscClose(evt) {
@@ -15,15 +13,13 @@ export default class Popup {
 
   open() {
     this._currentPopup.classList.add("popup_opened");
-    document.addEventListener("keydown", this._escape);
+    document.addEventListener("keydown", this._closeByEscBind);
   }
 
   close() {
     this._currentPopup.classList.remove("popup_opened");
-    document.removeEventListener("keydown", this._escape);
+    document.removeEventListener("keydown", this._closeByEscBind);
   }
-  /*Данный слушатель не будет удаляться, так как для успешного удаления  слушателя при установке и при удалении следует использовать одну и ту же именованную функцию.
-   Сейчас же при установке используется анонимная стрелочная.*/
 
   setEventListeners() {
     this._currentPopup

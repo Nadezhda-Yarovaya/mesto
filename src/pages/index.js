@@ -1,6 +1,14 @@
-import {nameInput,jobInput,popupImage,popupEditForm,nameResult,jobResult,popupNewForm,buttonEditPopup,buttonNewPopup, elementsCont, 
-  newImagePopup, imageParagraph, validationConfig, initialCards} from "../utils/constants.js";
-
+import {
+  popupEditForm,
+  nameResult,
+  jobResult,
+  popupNewForm,
+  buttonEditPopup,
+  buttonNewPopup,
+  elementsCont,
+  validationConfig,
+  initialCards,
+} from "../utils/constants.js";
 
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
@@ -16,10 +24,9 @@ validationEdit.enableValidation();
 const validationNewCard = new FormValidator(validationConfig, popupNewForm);
 validationNewCard.enableValidation();
 
-const userInfo = new UserInfo(".profile__name", ".profile__job"); /* .profile__name, .profile__job*/
-/*userInfo.getUserInfo(); */ /* get it from the page or from the form?? */
+/* глобальная видимость, создание экземпляров класса */
+const userInfo = new UserInfo(".profile__name", ".profile__job");
 
-/* EDIT profile class unit + button listener */
 const popupEditProfile = new PopupWithForm({
   popupSelector: ".popup_type_edit-profile",
   submitForm: (formInputsObj) => {
@@ -27,69 +34,58 @@ const popupEditProfile = new PopupWithForm({
   },
 });
 
-popupEditProfile.setEventListeners();
-/*объявлять типа токо один раз */
-buttonEditPopup.addEventListener("click", (evt) => {
-  evt.preventDefault();
-  const currentUserInfo = userInfo.getUserInfo();
-  nameResult.value = currentUserInfo.profileName;
-  jobResult.value = currentUserInfo.job;
-  popupEditProfile.open();
-});
+const imageInPopup = new PopupWithImage({ popupSelector: ".popup_type_image" });
 
-/*Экземпляр класса попапа с изображением следует создавать только 1 раз, 
-только в глобальной области видимости и только в файле index.js*/
-const imageInPopup = new PopupWithImage({
-  popupSelector: ".popup_type_image"
-});
-
-
-function createCard(element, selector) {
-  const newCard = new Card({
-    formData: element,
-    cardsSelector: selector,
-    handleCardClick: (imageInPopup) => {
-      imageInPopup.open(element.link, element.name);
-    },
-  });
-
-  
-
-/*initialize firsts, use section */
 const cardList = new Section(
   {
     items: initialCards,
     renderer: (element) => {
       const card = createCard(element, ".template-cards");
       const finalCard = card.generateCard();
-      elementsCont.prepend(card);
-      /*return finalCard;*/
+      elementsCont.prepend(finalCard);
     },
   },
   ".elements__list"
 );
-cardList.renderSection();
 
-/* NEW place class unit + listener */
 const popupAddPlace = new PopupWithForm({
   popupSelector: ".popup_type_new-place",
   submitForm: (dataItems) => {
     const card = createCard(dataItems, ".template-cards");
     const generatedCard = card.generateCard();
-    cardList.addItem(card);
-     /* elementsCont.prepend( generatedCard); тут ты права, но как?? В данном месте следует использовать метод addItem класса Section после объявления секции что ли в глобалке?*/
+    cardList.addItem(generatedCard);
   },
 });
-popupAddPlace.setEventListeners();
 
-buttonNewPopup.addEventListener("click", (evt) => {
-  evt.preventDefault();
-  popupAddPlace.open();
-});
-
-
-
+/* additional functions*/
+function createCard(element, selector) {
+  const newCard = new Card({
+    formData: element,
+    cardsSelector: selector,
+    handleCardClick: () => {
+      imageInPopup.open(element.link, element.name);
+    },
+  });
   return newCard;
 }
 
-export {};
+/* using classes units */
+popupEditProfile.setEventListeners();
+
+buttonEditPopup.addEventListener("click", (evt) => {
+  evt.preventDefault();
+  const currentUserInfo = userInfo.getUserInfo();
+  nameResult.value = currentUserInfo.profileName;
+  jobResult.value = currentUserInfo.job;
+  validationEdit.resetValidation();
+  popupEditProfile.open();
+});
+
+cardList.renderSection();
+
+popupAddPlace.setEventListeners();
+buttonNewPopup.addEventListener("click", (evt) => {
+  evt.preventDefault();
+  validationNewCard.resetValidation();
+  popupAddPlace.open();
+});
