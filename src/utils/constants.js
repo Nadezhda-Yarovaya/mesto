@@ -4,7 +4,6 @@ export const jobResult = popupEditForm.elements.job;
 export const popupNewForm = document.forms.newplaceform;
 export const buttonEditPopup = document.querySelector(".profile__edit-btn");
 export const buttonNewPopup = document.querySelector(".profile__add-btn");
-export const elementsCont = document.querySelector(".elements__list");
 
 export const validationConfig = {
   formSelector: ".popup__form",

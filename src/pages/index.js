@@ -5,7 +5,6 @@ import {
   popupNewForm,
   buttonEditPopup,
   buttonNewPopup,
-  elementsCont,
   validationConfig,
   initialCards,
 } from "../utils/constants.js";
@@ -34,15 +33,13 @@ const popupEditProfile = new PopupWithForm({
   },
 });
 
-const imageInPopup = new PopupWithImage({ popupSelector: ".popup_type_image" });
+const popupImage = new PopupWithImage({ popupSelector: ".popup_type_image" });
 
 const cardList = new Section(
   {
     items: initialCards,
     renderer: (element) => {
-      const card = createCard(element, ".template-cards");
-      const finalCard = card.generateCard();
-      elementsCont.prepend(finalCard);
+      addCreatedItem(element);
     },
   },
   ".elements__list"
@@ -51,9 +48,7 @@ const cardList = new Section(
 const popupAddPlace = new PopupWithForm({
   popupSelector: ".popup_type_new-place",
   submitForm: (dataItems) => {
-    const card = createCard(dataItems, ".template-cards");
-    const generatedCard = card.generateCard();
-    cardList.addItem(generatedCard);
+    addCreatedItem(dataItems);
   },
 });
 
@@ -63,10 +58,16 @@ function createCard(element, selector) {
     formData: element,
     cardsSelector: selector,
     handleCardClick: () => {
-      imageInPopup.open(element.link, element.name);
+      popupImage.open(element.link, element.name);
     },
   });
   return newCard;
+}
+
+function addCreatedItem(data) {
+  const card = createCard(data, ".template-cards");
+  const generatedCard = card.generateCard();
+  cardList.addItem(generatedCard);
 }
 
 /* using classes units */
