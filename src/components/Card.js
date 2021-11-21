@@ -1,9 +1,11 @@
 export default class Card {
-  constructor({ formData, cardsSelector, handleCardClick }) {
+  constructor({ formData, cardsSelector, handleCardClick, handleDeleteClick }) {
     this._name = formData.name;
     this._link = formData.link;
+    this._ownerId = formData.owner._id;
     this._cardsSelector = cardsSelector;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteClick = handleDeleteClick;
     this._newCard = this._getTemplate();
     this._elementsTitle = this._newCard.querySelector(".elements__title");
     this._imgButton = this._newCard.querySelector(".elements__image-btn");
@@ -16,6 +18,9 @@ export default class Card {
       .querySelector(this._cardsSelector)
       .content.querySelector(".elements__element")
       .cloneNode(true);
+      if(this._ownerId !== 'b495d05138b6ee7131b5aa05') {
+      this._template.querySelector('.elements__delete').classList.add('elements__delete_hidden');
+      }
     return this._template;
   }
 
@@ -45,7 +50,8 @@ export default class Card {
     });
 
     this._elementDelete.addEventListener("click", () => {
-      this._deleteCard();
+      /*this._deleteCard();*/
+      this._handleDeleteClick();
     });
   };
 }

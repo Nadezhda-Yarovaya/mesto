@@ -9,6 +9,11 @@
   box-sizing: border-box;
 }
 
+.popup__form-delete {
+  min-height:100px;
+  max-width:230px;
+}
+
 @media screen and (max-width: 680px) {
   .popup__form {
     max-width: 320px;

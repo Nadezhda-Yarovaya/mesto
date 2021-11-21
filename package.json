@@ -281,6 +281,7 @@
     "css-loader": "^6.5.1",
     "cssnano": "^5.0.9",
     "file-loader": "^6.2.0",
+    "gh-pages": "^3.2.3",
     "html-loader": "^3.0.1",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.4.4",
@@ -292,7 +293,9 @@
   "scripts": {
     "build": "rm -rf ./dist && webpack",
     "build:prod": "npm run build -- --mode=production",
-    "dev": "webpack serve --open"
+    "dev": "webpack serve --open",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",

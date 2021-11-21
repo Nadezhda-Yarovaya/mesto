@@ -12,6 +12,8 @@
   align-items: center;
 }
 
+.popup__cont-delete {}
+
 @media screen and (max-width: 680px) {
   .popup__container {
     max-width: 380px;
