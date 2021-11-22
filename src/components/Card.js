@@ -1,7 +1,9 @@
 export default class Card {
-  constructor({ formData, cardsSelector, handleCardClick, handleDeleteClick }) {
+  constructor({ formData, cardsSelector, handleCardClick, handleDeleteClick, api }) { /* передать тут, получается */
+    this._api = api; /*говорит сюда нужно вместо апи колбэк, он и опишет логику удаления */
     this._name = formData.name;
     this._link = formData.link;
+    this._cardId = formData.id;
     this._ownerId = formData.owner._id;
     this._cardsSelector = cardsSelector;
     this._handleCardClick = handleCardClick;
@@ -33,7 +35,14 @@ export default class Card {
   };
 
   _deleteCard = () => {
-    this._newCard.remove();
+    this._api.deleteCard(this._cardId)
+    .then(()=>
+    {
+      this._newCard.remove();
+    })
+    .catch(err => console.log(err));
+
+    
   };
 
   _toggleLikes() {

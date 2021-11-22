@@ -62,14 +62,15 @@ const initialCards = getInitialCards() /* тут then? а в Апи не then?
 })
 .catch (res => console.log(err));
 */
-
-const apiGet = new Api({
+/*одна АПИ*/
+const api = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-30",
   headers: {
     authorization: "cd4b9d27-bb3f-46e8-b234-b4266f9e218c",
     "Content-Type": "application/json",
   },
-});
+}
+);
 
 /* сначала надо понаудалять все 5 новых моих карточек, затем думать, как новую постить то */
 const apiPost = new Api({
@@ -100,10 +101,11 @@ apiGet.getInitialCards().then((result) => {
   });
   const cardList = new Section(
     {
-      items: result,
+      items: result, /* const new1 = result.map(eachObj => {return eachObj.name}); - да оно не надо у нас тоже объект будет у меня резалт со всеми полями получился */
       renderer: (element) => {
         addCreatedItem(element);
       },
+      apiGet
     },
     ".elements__list"
   );
@@ -176,7 +178,7 @@ function createCard(element, selector) {
 function addCreatedItem(data) {
   const card = createCard(data, ".template-cards");
   const generatedCard = card.generateCard();
-  cardList.addItem(generatedCard);
+  cardList.saveItem(generatedCard);
 }
 
 /* using classes units */

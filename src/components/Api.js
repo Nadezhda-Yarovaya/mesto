@@ -1,10 +1,7 @@
 export default class Api {
-    constructor({baseUrl, headers, body}) {
-      this._url = baseUrl;
-      this._body = body;
-      this._headers=headers;
-
-      /*this._cardname = this._body.name;*/
+    constructor(config) { 
+      this._url = config.baseUrl;
+      this._headers=config.headers;
     }
 
 
@@ -40,8 +37,8 @@ export default class Api {
       
         
       return fetch(`${this._url}/cards`, {
-        method: "GET",
-        headers: this._headers
+        method: "GET", /* по умолчанию, но можно явно показать*/
+        headers: this._headers /* да тут нет боди */
       })
       .then(res => {
         if (res.ok) {
@@ -55,11 +52,11 @@ export default class Api {
       
     }
 
-      postNewCard() {
+      postNewCard(newCardData) {
         return fetch(`${this._url}/cards`, {
           method: "POST",
           headers: this._headers,
-          body: this._body        
+          body: json.stringify(newCardData)
         })
         .then(res => {
           if (res.ok) {
@@ -72,12 +69,11 @@ export default class Api {
         }); 
       }
 
-      deleteCard(cardId) {
+      deleteCard(cardId) { /* thisId of Card.js */
         this._id = cardId;        
-        return fetch(`${this._url}/cards` + this._id, {
+        return fetch(`${this._url}/cards${this._id}`, {
           method: "DELETE",
-          headers: this._headers,
-          body: this._body
+          headers: this._headers /*no body here*/
         })
         .then(res => {
           if (res.ok) {
