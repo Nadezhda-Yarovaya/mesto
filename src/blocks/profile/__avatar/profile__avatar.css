@@ -6,3 +6,36 @@
   grid-row: 1;
   grid-column: 1;
 }
+.profile__avatar-cont {
+  position: relative;
+  
+}
+
+.profile__av-overlay{
+  width: 100%;
+  height: 120px;
+  visibility: hidden;
+  transition: .2s ease;
+  margin:0;
+  padding:0;
+  position: absolute;
+  top: 0;
+  left: 0;  
+  background-color: rgba(0,0,0,0.8);
+  /*
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile__av-overlay-edit-pic {
+  width: 26px;
+  height: 26px;
+}
+
+.profile__avatar-cont:hover .profile__av-overlay {
+  visibility: visible;
+  cursor: pointer;
+}

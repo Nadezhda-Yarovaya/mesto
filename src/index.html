@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mesto Russia 4 sprint</title>
+    <title>Mesto Russia</title>
   </head>
   <body>
     <div class="page">
@@ -18,7 +18,13 @@
       </header>
       <main class="main page__main">
         <section class="profile main__profile-section">
-          <img class="profile__avatar" src="images/avatar.png" alt="Аватар" />
+          <div class="profile__avatar-cont">
+            <img class="profile__avatar" src="images/avatar.png" alt="Аватар" />
+          <div class="profile__av-overlay">
+            <img class="profile__av-overlay-edit-pic" src="images/edit-avatar.svg" изменить аватар"/>
+            </div>
+          </div>
+
           <div class="profile__personal-data">
             <div class="profile__name-containter">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -152,8 +158,32 @@
           class="popup__close-btn popup__close-img"
           aria-label="закрыть окно"
         ></button>
-      </div>
-       
+      </div>       
+    </div>
+
+    <div class="popup popup_type_upd-avatar">
+      <div class="popup__container popup__cont-delete"> 
+        <form class="popup__form popup__form-delete" name="deleteform">
+          <p class="popup__paragraph">Обновить аватар</p>
+          <input
+            type="URL"
+            class="popup__input popup__input_type_avatar"
+            placeholder="URL"
+            required
+            name = "avatarurl"
+            id="newplace-input"
+            autocomplete="off"
+            minlength="2"
+            maxlength="200"
+          />
+          <input type="submit" class="popup__submit" value="Сохранить" />
+        </form>
+      <button
+          type="button"
+          class="popup__close-btn popup__close-img"
+          aria-label="закрыть окно"
+        ></button>
+      </div>       
     </div>
 
     <template class="template-cards">
@@ -166,11 +196,14 @@
         <img class="elements__image-btn" />
         <div class="elements__title-container">
           <h2 class="elements__title"></h2>
+          <div class="elements__like-cont">
           <button
             type="button"
             class="elements__like"
             aria-label="Нравится"
           ></button>
+          <p class="elements__likes-number">0</p>
+          </div>
         </div>
       </li>
     </template>

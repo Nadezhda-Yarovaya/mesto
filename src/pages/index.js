@@ -19,6 +19,9 @@ import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import "../pages/index.css";
 
+const newAvatarButton = document.querySelector('.profile__av-overlay');
+const avatarOnPage = document.querySelector('.profile__avatar');
+const avatarUrlInput = document.querySelector('.popup__input_type_avatar');
 /* predefine this constant, without it doesn't work */
 /*
 const cardList = new Section(
@@ -41,18 +44,19 @@ validationNewCard.enableValidation();
 /* глобальная видимость, создание экземпляров класса */
 const userInfo = new UserInfo(".profile__name", ".profile__job");
 
+
 const popupEditProfile = new PopupWithForm({
   popupSelector: ".popup_type_edit-profile",
-  submitForm: (formInputsObj) => {
+  submitForm: () => {
+    api.saveProfileData(nameResult.value, jobResult.value)
+    .then(()=> {
+    })
+    .catch(err=>console.log(err));
     userInfo.setUserInfo(nameResult.value, jobResult.value);
   },
 }); 
 const popupImage = new PopupWithImage({ popupSelector: ".popup_type_image" });
-const popupDelete = new PopupWithDelete({ popupSelector: ".popup_type_delete", submitDeleteForm: () =>{
-  console.log('delete ёпта');
-  apiPost.deleteCard()
-  .then(res => {console.log('we deleted: ' + res)});
-} });
+
 
 /*api single*/
 const api = new Api({
@@ -68,7 +72,7 @@ const api = new Api({
 api.getInitialCards().then((result) => {
   /*showing all cards in console */
   result.forEach(singleObj => {
-  //console.log('res name and ID: ' + singleObj.name + ' id: ' + singleObj._id + ' url: ' + singleObj.link + ' owner id: ' +singleObj.owner._id);
+  //console.log('res name and ID: ' + singleObj.name + ' id: ' + singleObj._id + ' likes: ' + singleObj.likes.length);
     });
 
   const cardList = new Section(
@@ -95,12 +99,10 @@ api.getInitialCards().then((result) => {
       api.postNewCard(
         valuesGot)
           .then(res => { 
-      /*console.log('res Name in post new: ' + res.name); */
       const card = createCard({
         name: res.name,
         link: res.link
       }, ".template-cards");
-      /*console.log('gener card:' + res); */
       const generatedCard = card.generateCard();
       cardList.addItem(generatedCard);      
       /*cardList.saveItem(generatedCard);*/ 
@@ -120,23 +122,43 @@ buttonNewPopup.addEventListener("click", (evt) => {
 /* END  using promise to get all cards */
 
 
+const popupEditAvatar = new PopupWithForm({
+  popupSelector: ".popup_type_upd-avatar",
+  submitForm: () => { 
+    api.saveAvatarUrl(avatarUrlInput.value).then(()=> {
+    })
+    .catch(err => console.log('Ошибка такова:' + err));
+    avatarOnPage.src = avatarUrlInput.value;
+    /*userInfo.setUserInfo(avatarUrlInput.value);*/
+  }
+});
+popupEditAvatar.setEventListeners();
+newAvatarButton.addEventListener("click", (evt) => {
+  evt.preventDefault();
+  /*validationNewCard.resetValidation();*/
+  popupEditAvatar.open();
+});
+
+api.loadAvatar()
+.then(res => {
+avatarOnPage.src = res.avatar;
+})
+.catch(err=>console.log(err));
+
 let profileInfo = api.getProfileInfo().then((result) => {
-  console.log(
-    "profilename: " + result.name
-  ); /*переписывать надо, щас изнач загрзука с html*/
   document.querySelector(".profile__name").textContent = result.name;
   document.querySelector(".profile__job").textContent = result.about;
 })
 .catch(err => console.log(`Ошибка такова: ${err}`));
 
 
-
-
-
-
-
-
 /* additional functions*/
+const popupDelete = new PopupWithDelete({ popupSelector: ".popup_type_delete", submitDeleteForm: (cardId) =>{
+  api.deleteCard(cardId)
+  .then(res => {
+    console.log('we deleted: ' + res)});
+} });
+
 function createCard(element, selector) {
   const newCard = new Card({
     formData: element,
@@ -145,10 +167,9 @@ function createCard(element, selector) {
       popupImage.open(element.link, element.name); 
     },
     handleDeleteClick: () => {
-      popupDelete.open();      
+      popupDelete.open(element);      
     }, api
   });
-  console.log('newcard:' + newCard);
   return newCard;
 }
 

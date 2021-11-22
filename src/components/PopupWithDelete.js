@@ -7,16 +7,18 @@ export default class PopupWithDelete extends Popup {
     this._form = document.querySelector(popupSelector).querySelector('.popup__form');
   }
 
-  open() {
+  open(element) {
     this.setEventListeners();
     super.open();
+    this._dataObj = element;
+    this._cardId= this._dataObj._id;
   }
 
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._submitDeleteForm();
+      this._submitDeleteForm(this._cardId);
       this.close();
     });
   }
