@@ -1,10 +1,11 @@
 export default class Card {
   constructor({ formData, cardsSelector, handleCardClick, handleDeleteClick, api }) { /* передать тут, получается */
     this._api = api; /*говорит сюда нужно вместо апи колбэк, он и опишет логику удаления */
-    this._name = formData.name;
-    this._link = formData.link;
-    this._cardId = formData.id;
-    this._ownerId = formData.owner._id;
+   /* this._removeCard = removeCard;*/
+    this._data=formData;
+    this._name = this._data.name;
+    this._link = this._data.link;
+    this._cardId = this._data._id;
     this._cardsSelector = cardsSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
@@ -16,6 +17,7 @@ export default class Card {
   }
 
   _getTemplate() {
+    this._ownerId = this._data.owner._id;
     this._template = document
       .querySelector(this._cardsSelector)
       .content.querySelector(".elements__element")
@@ -35,14 +37,13 @@ export default class Card {
   };
 
   _deleteCard = () => {
+    console.log('id:' + this._cardId); /* all works, but with no callback, but api transfer */
     this._api.deleteCard(this._cardId)
     .then(()=>
     {
       this._newCard.remove();
     })
-    .catch(err => console.log(err));
-
-    
+    .catch(err => console.log(err));    
   };
 
   _toggleLikes() {
@@ -59,8 +60,8 @@ export default class Card {
     });
 
     this._elementDelete.addEventListener("click", () => {
-      /*this._deleteCard();*/
-      this._handleDeleteClick();
+      this._deleteCard();
+     /* this._removeCard();*/
     });
   };
 }

@@ -19,8 +19,8 @@ import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import "../pages/index.css";
 
-
 /* predefine this constant, without it doesn't work */
+/*
 const cardList = new Section(
   {
     items: initialCards,
@@ -30,6 +30,7 @@ const cardList = new Section(
   },
   ".elements__list"
 );
+*/
 
 /*validations*/
 const validationEdit = new FormValidator(validationConfig, popupEditForm);
@@ -45,8 +46,7 @@ const popupEditProfile = new PopupWithForm({
   submitForm: (formInputsObj) => {
     userInfo.setUserInfo(nameResult.value, jobResult.value);
   },
-});
-
+}); 
 const popupImage = new PopupWithImage({ popupSelector: ".popup_type_image" });
 const popupDelete = new PopupWithDelete({ popupSelector: ".popup_type_delete", submitDeleteForm: () =>{
   console.log('delete ёпта');
@@ -54,15 +54,7 @@ const popupDelete = new PopupWithDelete({ popupSelector: ".popup_type_delete", s
   .then(res => {console.log('we deleted: ' + res)});
 } });
 
-/*
-const initialCards = getInitialCards() /* тут then? а в Апи не then? 
-.then(res => {res.json();
-  const cardsArray = [];
-  cardsArray = res; /* тут может быть foreach? 
-})
-.catch (res => console.log(err));
-*/
-/*одна АПИ*/
+/*api single*/
 const api = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-30",
   headers: {
@@ -72,92 +64,76 @@ const api = new Api({
 }
 );
 
-/* сначала надо понаудалять все 5 новых моих карточек, затем думать, как новую постить то */
-const apiPost = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-30",
-  headers: {
-    authorization: "cd4b9d27-bb3f-46e8-b234-b4266f9e218c",
-    "Content-Type": "application/json",
-  }, 
-  body: JSON.stringify({
-    name: 'Исландия',
-    link: 'https://images.unsplash.com/photo-1637266702043-287eb7d2b5b2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80',
-  })
-});
-
-
-/*
-apiPost.postNewCard().then((result) => {
-  console.log('result: ' +result.name);
-});*/
-
 /* /////////////////using promise to get all cards */
-apiGet.getInitialCards().then((result) => {
-  /*console.log("result: " + result[4].name);*/
-  /*return result;*/
+api.getInitialCards().then((result) => {
+  /*showing all cards in console */
   result.forEach(singleObj => {
-  console.log('res name and ID: ' + singleObj.name + ' id: ' + singleObj._id + ' url: ' + singleObj.link + ' owner id: ' +singleObj.owner._id);
-  /*check my owner ID then see*/
-  });
+  //console.log('res name and ID: ' + singleObj.name + ' id: ' + singleObj._id + ' url: ' + singleObj.link + ' owner id: ' +singleObj.owner._id);
+    });
+
   const cardList = new Section(
     {
-      items: result, /* const new1 = result.map(eachObj => {return eachObj.name}); - да оно не надо у нас тоже объект будет у меня резалт со всеми полями получился */
+      items: result,
       renderer: (element) => {
-        addCreatedItem(element);
+        // addCreatedItem(element);
+        /* поэтому удалять нельзя было */
+  const card = createCard(element, ".template-cards"); /*- тут элемент, а не дата! 
+  card = result of Card js constructor*/
+  const generatedCard = card.generateCard(); /* result is generated Card full with layout and data */
+  cardList.addItem(generatedCard);
       },
-      apiGet
+      api
     },
     ".elements__list"
   );
   cardList.renderSection();
-});
-/* END  using promise to get all cards */
 
-let profileInfo = apiGet.getProfileInfo().then((result) => {
-  console.log(
-    "profilename: " + result.name
-  ); /*переписывать надо, щас изнач загрзука с html*/
-  document.querySelector(".profile__name").textContent = result.name;
-  document.querySelector(".profile__job").textContent = result.about;
-});
-/*.then(data => {
-  console.log('data: ' + data);
-  for(let i=0; i< data.length; i++){
-    newlog1[i] = data[i];
-    console.log('newarray1: ' + newlog1[i].name);
-    console.log('newarray1-link: ' + newlog1[i].link);
+  const popupAddPlace = new PopupWithForm({
+    popupSelector: ".popup_type_new-place",
+    submitForm: () => { 
+      const valuesGot = popupAddPlace.getInputValues();/* post only from submit form! */
+      api.postNewCard(
+        valuesGot)
+          .then(res => { 
+      /*console.log('res Name in post new: ' + res.name); */
+      const card = createCard({
+        name: res.name,
+        link: res.link
+      }, ".template-cards");
+      /*console.log('gener card:' + res); */
+      const generatedCard = card.generateCard();
+      cardList.addItem(generatedCard);      
+      /*cardList.saveItem(generatedCard);*/ 
+    }
+          );
   }
-  return newlog1;
-});*/
-/*console.log('initcards: ' + initialCardsResp);*/
-/*
-const initialCardsRespon = initialCardsResp.then(data => {
-console.log('promisedata: '+ data[0].name);
-return data;
-});
-
-console.log('initialCardsRespon: '+ initialCardsRespon[0].name);*/
-
-/* initialCards - ну тут и начальные карточки полученные как бэ - все карточки
-    тут типа массив, функция возвращает массив*/
-
-/*это ваще убрать ващемт*/
-
-
-const popupAddPlace = new PopupWithForm({
-  popupSelector: ".popup_type_new-place",
-  submitForm: (dataItems) => {
-    apiPost.postNewCard(dataItems).then(res => { console.log('res in post new: ' + res.name); });
-    addCreatedItem(dataItems); /*когда сабмитится, тогда и добавляется*/
-  },
-});
-
+  });
+  
 popupAddPlace.setEventListeners();
 buttonNewPopup.addEventListener("click", (evt) => {
   evt.preventDefault();
   validationNewCard.resetValidation();
   popupAddPlace.open();
 });
+
+});
+/* END  using promise to get all cards */
+
+
+let profileInfo = api.getProfileInfo().then((result) => {
+  console.log(
+    "profilename: " + result.name
+  ); /*переписывать надо, щас изнач загрзука с html*/
+  document.querySelector(".profile__name").textContent = result.name;
+  document.querySelector(".profile__job").textContent = result.about;
+})
+.catch(err => console.log(`Ошибка такова: ${err}`));
+
+
+
+
+
+
 
 
 /* additional functions*/
@@ -170,8 +146,9 @@ function createCard(element, selector) {
     },
     handleDeleteClick: () => {
       popupDelete.open();      
-    }
+    }, api
   });
+  console.log('newcard:' + newCard);
   return newCard;
 }
 

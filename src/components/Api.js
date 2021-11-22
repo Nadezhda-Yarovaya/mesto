@@ -56,7 +56,7 @@ export default class Api {
         return fetch(`${this._url}/cards`, {
           method: "POST",
           headers: this._headers,
-          body: json.stringify(newCardData)
+          body: JSON.stringify(newCardData)
         })
         .then(res => {
           if (res.ok) {
@@ -71,7 +71,7 @@ export default class Api {
 
       deleteCard(cardId) { /* thisId of Card.js */
         this._id = cardId;        
-        return fetch(`${this._url}/cards${this._id}`, {
+        return fetch(`${this._url}/cards/${this._id}`, {
           method: "DELETE",
           headers: this._headers /*no body here*/
         })
