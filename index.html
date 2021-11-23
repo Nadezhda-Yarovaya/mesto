@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mesto Russia 4 sprint</title>
+    <title>Mesto Russia</title>
   <script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
   <body>
     <div class="page">
@@ -18,7 +18,13 @@
       </header>
       <main class="main page__main">
         <section class="profile main__profile-section">
-          <img class="profile__avatar" src="993f3d93348c99403d38.png" alt="Аватар" />
+          <div class="profile__avatar-cont">
+            <img class="profile__avatar" src="993f3d93348c99403d38.png" alt="Аватар" />
+          <div class="profile__av-overlay">
+            <img class="profile__av-overlay-edit-pic" src="a086f758840ae814ecde.svg" alt="изменить аватар"/>
+            </div>
+          </div>
+
           <div class="profile__personal-data">
             <div class="profile__name-containter">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -141,6 +147,48 @@
        
     </div>
 
+    <div class="popup popup_type_delete">
+      <div class="popup__container popup__cont-delete"> 
+        <form class="popup__form popup__form-delete" name="deleteform">
+          <p class="popup__paragraph">Вы уверены?</p>
+          <input type="submit" class="popup__submit" value="Да" />
+        </form>
+      <button
+          type="button"
+          class="popup__close-btn popup__close-img"
+          aria-label="закрыть окно"
+        ></button>
+      </div>       
+    </div>
+
+    <div class="popup popup_type_upd-avatar">
+      <div class="popup__container popup__cont-update"> 
+        <form class="popup__form popup__form-update" name="updateavatar">
+          <p class="popup__paragraph">Обновить аватар</p>
+          <section class="popup__section">
+          <input
+            type="URL"
+            class="popup__input popup__input_type_avatar"
+            placeholder="URL"
+            required
+            name = "avatarurl"
+            id="avatar-input"
+            autocomplete="off"
+            minlength="2"
+            maxlength="200"
+          />
+          <span class="popup__input-error avatar-input-error"></span>
+        </section>
+          <input type="submit" class="popup__submit" value="Сохранить" />
+        </form>
+      <button
+          type="button"
+          class="popup__close-btn popup__close-img"
+          aria-label="закрыть окно"
+        ></button>
+      </div>       
+    </div>
+
     <template class="template-cards">
       <li class="elements__element">
         <button
@@ -151,11 +199,14 @@
         <img class="elements__image-btn" />
         <div class="elements__title-container">
           <h2 class="elements__title"></h2>
+          <div class="elements__like-cont">
           <button
             type="button"
             class="elements__like"
             aria-label="Нравится"
           ></button>
+          <p class="elements__likes-number">0</p>
+          </div>
         </div>
       </li>
     </template>
