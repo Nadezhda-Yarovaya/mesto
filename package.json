@@ -294,7 +294,6 @@
     "build": "rm -rf ./dist && webpack",
     "build:prod": "npm run build -- --mode=production",
     "dev": "webpack serve --open",
-    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "repository": {
