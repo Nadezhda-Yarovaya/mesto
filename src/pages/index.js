@@ -40,17 +40,16 @@ const api = new Api({
   },
 });
 
-/***************PROMISE ALL ******************* */
+const userInfo = new UserInfo(
+  ".profile__name",
+  ".profile__job",
+  ".profile__avatar"
+);
+
 Promise.all([api.getProfileInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
-    const userId = userData._id;
-    const userInfo = new UserInfo(
-      ".profile__name",
-      ".profile__job",
-      ".profile__avatar",
-      userData
-    );
-    userInfo.applyInitialLoad();
+    userInfo.applyInitialLoad(userData);
+    const userId = userInfo.getUserId();
 
     /* v new SECTION */
     const cardList = new Section(
@@ -71,8 +70,7 @@ Promise.all([api.getProfileInfo(), api.getInitialCards()])
     const popupAddPlace = new PopupWithForm({
       popupSelector: ".popup_type_new-place",
       submitForm: () => {
-        const valuesGot =
-          popupAddPlace.getInputValues(); 
+        const valuesGot = popupAddPlace.getInputValues();
         api
           .postNewCard(valuesGot)
           .then((res) => {
@@ -103,14 +101,14 @@ Promise.all([api.getProfileInfo(), api.getInitialCards()])
         const valuesGot = popupEditProfile.getInputValues();
         api
           .saveProfileData(valuesGot.profileName, valuesGot.job)
-          .then(() => {
-            userInfo.setUserInfo(valuesGot.profileName, valuesGot.job);
+          .then((res) => {
+            userInfo.setUserInfo(res.name, res.about);
             popupEditProfile.close();
           })
           .catch((err) => console.log("Ошибка в профиле:" + err))
           .finally(() => {
             {
-              popupEditAvatar.renderLoading("Сохранить");
+              popupEditProfile.renderLoading("Сохранить");
             }
           });
       },
@@ -153,7 +151,7 @@ const popupEditAvatar = new PopupWithForm({
     api
       .saveAvatarUrl(popupEditAvatar.getInputValues())
       .then((res) => {
-        avatarOnPage.src = res.avatar;
+        userInfo.setNewAvatar(res.avatar);
         popupEditAvatar.close();
       })
       .catch((err) => console.log("Ошибка такова:" + err))

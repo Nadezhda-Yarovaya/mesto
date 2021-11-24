@@ -4,9 +4,7 @@ export default class PopupWithDelete extends Popup {
   constructor({ popupSelector, submitDeleteForm }) {
     super({ popupSelector });
     this._submitDeleteForm = submitDeleteForm;
-    this._form = document
-      .querySelector(popupSelector)
-      .querySelector(".popup__form");
+    this._form = this._currentPopup.querySelector(".popup__form");
   }
 
   open(element, cardToDelete) {
@@ -21,8 +19,12 @@ export default class PopupWithDelete extends Popup {
     this._cardToDelete.remove();
   }
 
+  renderLoading(buttonText) {
+    this._form.querySelector(".popup__submit").value = buttonText;
+  }
+
   _savingData() {
-    this._form.querySelector(".popup__submit").value = "Сохранение...";
+    this._form.querySelector(".popup__submit").value = "Удаление...";
   }
 
   setEventListeners() {

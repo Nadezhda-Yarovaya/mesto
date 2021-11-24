@@ -1,12 +1,12 @@
 export default class UserInfo {
-  constructor(nameSelector, jobSelector, avatarSelector, profileData) {
+  constructor(nameSelector, jobSelector, avatarSelector) {
     this._nameSelector = nameSelector;
     this._jobSelector = jobSelector;
     this._avatarSelector = avatarSelector;
+
     this._name = document.querySelector(this._nameSelector);
     this._job = document.querySelector(this._jobSelector);
     this._avatar = document.querySelector(this._avatarSelector);
-    this._profileData = profileData;
   }
 
   getUserInfo() {
@@ -16,10 +16,19 @@ export default class UserInfo {
     return this._userData;
   }
 
-  applyInitialLoad() {
+  applyInitialLoad(profileData) {
+    this._profileData = profileData;
     this._name.textContent = this._profileData.name;
     this._job.textContent = this._profileData.about;
     this._avatar.src = this._profileData.avatar;
+  }
+
+  getUserId() {
+    return this._profileData._id;
+  }
+
+  setNewAvatar(avatarUrl) {
+    this._avatar.src = avatarUrl;
   }
 
   setUserInfo(userName, userJob) {

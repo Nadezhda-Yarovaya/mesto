@@ -24,6 +24,10 @@ export default class PopupWithForm extends Popup {
     this._form.reset();
   }
 
+  renderLoading(buttonText) {
+    this._form.querySelector(".popup__submit").value = buttonText;
+  }
+
   _savingData() {
     this._popupButton.value = "Сохранение...";
   }
