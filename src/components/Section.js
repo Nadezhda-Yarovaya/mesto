@@ -9,7 +9,7 @@ export default class Section {
   addItem(card) {
     this._container.prepend(card);
   }
-
+/*
   saveItem = (text) => {
     this._api
       .postNewCard({
@@ -21,7 +21,7 @@ export default class Section {
       .catch((err) => {
         console.log(err);
       });
-  };
+  }; */
 
   renderSection() {
     this._initialArray.forEach((element) => {

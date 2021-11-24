@@ -4,40 +4,25 @@ export default class Api {
     this._headers = config.headers;
   }
 
-  getProfileInfo() {
-    return fetch(`${this._url}/users/me`, {
-      method: "GET",
-      headers: this._headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка такова: ${res.status}`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка такова: ${res.status}`);
   }
 
   _getRequest(currentUrl) {
     return fetch(`${this._url}${currentUrl}`, {
       method: "GET",
       headers: this._headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка такова: ${res.status}`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }).then(this._checkResponse);
   }
 
   getInitialCards() {
-    return this._getRequest('/cards');
+    return this._getRequest("/cards");
+  }
+  getProfileInfo() {
+    return this._getRequest("/users/me");
   }
 
   postNewCard(newCardData) {
@@ -45,16 +30,7 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(newCardData),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка такова: ${res.status}`);
-      })
-      .catch((err) => {
-        console.log(err); 
-      });
+    }).then(this._checkResponse);
   }
 
   deleteCard(cardId) {
@@ -62,16 +38,7 @@ export default class Api {
     return fetch(`${this._url}/cards/${this._id}`, {
       method: "DELETE",
       headers: this._headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка такова: ${res.status}`);
-      })
-      .catch((err) => {
-        console.log("Ошибка такова: " + err); 
-      });
+    }).then(this._checkResponse);
   }
 
   _saveProfileAll(data, fetchUrl) {
@@ -79,16 +46,7 @@ export default class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(data),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка такова: ${res.status}`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }).then(this._checkResponse);
   }
 
   saveProfileData(nameResult, jobResult) {
@@ -104,30 +62,17 @@ export default class Api {
   saveAvatarUrl(avatarUrl) {
     return this._saveProfileAll(
       {
-        avatar: avatarUrl,
+        avatar: avatarUrl.avatarupdate,
       },
       `${this._url}/users/me/avatar`
     );
-  }
-
-  loadAvatar() {    
-    return this._getRequest('/users/me');
   }
 
   _likes(methodToUse, cardId) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: methodToUse,
       headers: this._headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка такова: ${res.status}`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }).then(this._checkResponse);
   }
 
   putLikes(cardId) {

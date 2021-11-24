@@ -7,7 +7,6 @@ export const buttonEditPopup = document.querySelector(".profile__edit-btn");
 export const buttonNewPopup = document.querySelector(".profile__add-btn");
 export const newAvatarButton = document.querySelector('.profile__av-overlay');
 export const avatarOnPage = document.querySelector('.profile__avatar');
-export const avatarUrlInput = document.querySelector('.popup__input_type_avatar');
 
 export const validationConfig = {
   formSelector: ".popup__form",

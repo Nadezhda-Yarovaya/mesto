@@ -21,6 +21,10 @@ export default class Popup {
     document.removeEventListener("keydown", this._closeByEscBind);
   }
 
+  renderLoading(buttonText) {
+    this._form.querySelector(".popup__submit").value = buttonText;
+  }
+
   setEventListeners() {
     this._currentPopup
       .querySelector(".popup__close-btn")
